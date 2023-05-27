@@ -5,7 +5,6 @@ creator: Derrick Cassidy
 subject: Tutorial
 keywords: [Swift, Tutorial, Programming, Mobile, Applications, Reference, Language, iOS, iPad, MacOS, Xcode]
 ---
-[TOC]
 
 # The Basics
 
