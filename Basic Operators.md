@@ -1,9 +1,4 @@
-[Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)
-
-
-
-# Basic Operators ![swift-logo](/Volumes/laravel/Swift Language Guide/swift-logo.svg)
-
+# Basic Operators
 ### Perform operations like assignment, arithmetic, and comparison.
 
 An operator is a special symbol or phrase that you use to check, change, or combine values. For example, the addition operator (`+`) adds two numbers, as in `let i = 1 + 2`, and the logical AND operator (`&&`) combines two Boolean values, as in `if enteredDoorCode && passedRetinaScan`.
@@ -16,7 +11,7 @@ This chapter describes the common operators in Swift. [Advanced Operators](Advan
 
 
 
-## Terminology ![swift-logo](/Volumes/laravel/Swift Language Guide/swift-logo.svg)
+## Terminology
 
 Operators are unary, binary, or ternary:
 
@@ -30,7 +25,7 @@ The values that operators affect are operands. In the expression `1 + 2`, the + 
 
 
 
-## Assignment Operator ![swift-logo](/Volumes/laravel/Swift Language Guide/swift-logo.svg)
+## Assignment Operator
 
 The assignment operator (`a = b`) initializes or updates the value of a with the value of `b`:
 
@@ -60,7 +55,7 @@ This feature prevents the assignment operator (`=`) from being used by accident 
 
 
 
-## Arithmetic Operators ![swift-logo](/Volumes/laravel/Swift Language Guide/swift-logo.svg)
+## Arithmetic Operators
 
 Swift supports the four standard arithmetic operators for all number types:
 
@@ -84,7 +79,7 @@ The addition operator is also supported for `String` concatenation:
 "hello, " + "world"  // equals "hello, world"
 ```
 
-## Remainder Operator ![swift-logo](/Volumes/laravel/Swift Language Guide/swift-logo.svg)
+## Remainder Operator
 
 The remainder operator (`a % b`) works out how many multiples of b will fit inside a and returns the value that’s left over (known as the *remainder*).
 
@@ -130,7 +125,7 @@ The sign of `b` is ignored for negative values of `b`. This means that `a % b` a
 
 
 
-## Unary Minus Operator ![swift-logo](/Volumes/laravel/Swift Language Guide/swift-logo.svg)
+## Unary Minus Operator
 
 The sign of a numeric value can be toggled using a prefixed -, known as the *unary minus operator*:
 
@@ -144,7 +139,7 @@ The unary minus operator (`-`) is prepended directly before the value it operate
 
 
 
-## Unary Plus Operator ![swift-logo](/Volumes/laravel/Swift Language Guide/swift-logo.svg)
+## Unary Plus Operator
 
 The *unary plus operator* (`+`) simply returns the value it operates on, without any change:
 
@@ -157,7 +152,7 @@ Although the unary plus operator doesn’t actually do anything, you can use it 
 
 
 
-## Compound Assignment Operators ![swift-logo](/Volumes/laravel/Swift Language Guide/swift-logo.svg)
+## Compound Assignment Operators
 
 Like C, Swift provides compound assignment operators that combine assignment (`=`) with another operation. One example is the addition assignment operator (`+=`):
 
