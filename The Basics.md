@@ -1,6 +1,6 @@
 [Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)
 
-# The Basics ![swift-logo](/Volumes/laravel/Swift Language Guide/swift-logo.svg)
+# The Basics
 
 ### Work with common kinds of data and write basic syntax.
 
