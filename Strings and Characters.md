@@ -1,16 +1,14 @@
-[Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)
-
-[TOC]
-
-
-
 # Strings and Characters
 
+[Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)
 
+\[TOC]
 
-### Store and manipulate text.
+## Strings and Characters
 
-A *string* is a series of characters, such as `"hello, world"` or `"albatross"`. Swift strings are represented by the `String` type. The contents of a `String` can be accessed in various ways, including as a collection of `Character` values.
+#### Store and manipulate text.
+
+A _string_ is a series of characters, such as `"hello, world"` or `"albatross"`. Swift strings are represented by the `String` type. The contents of a `String` can be accessed in various ways, including as a collection of `Character` values.
 
 Swift’s `String` and `Character` types provide a fast, Unicode-compliant way to work with text in your code. The syntax for string creation and manipulation is lightweight and readable, with a string literal syntax that’s similar to C. String concatenation is as simple as combining two strings with the `+` operator, and string mutability is managed by choosing between a constant or a variable, just like any other value in Swift. You can also use strings to insert constants, variables, literals, and expressions into longer strings, in a process known as string interpolation. This makes it easy to create custom string values for display, storage, and printing.
 
@@ -22,11 +20,9 @@ Despite this simplicity of syntax, Swift’s `String` type is a fast, modern str
 >
 > For more information about using `String` with Foundation and Cocoa, see [Bridging Between String and NSString](https://developer.apple.com/documentation/swift/string#2919514).
 
+### String Literals
 
-
-## String Literals
-
-You can include predefined `String` values within your code as *string literals*. A string literal is a sequence of characters surrounded by double quotation marks (`"`).
+You can include predefined `String` values within your code as _string literals_. A string literal is a sequence of characters surrounded by double quotation marks (`"`).
 
 Use a string literal as an initial value for a constant or variable:
 
@@ -36,9 +32,7 @@ let someString = "Some string literal value"
 
 Note that Swift infers a type of `String` for the `someString` constant because it’s initialized with a string literal value.
 
-
-
-### Multiline String Literals
+#### Multiline String Literals
 
 If you need a string that spans several lines, use a multiline string literal — a sequence of characters surrounded by three double quotation marks:
 
@@ -84,22 +78,18 @@ It also ends with a line break.
 """
 ```
 
-A multiline string can be indented to match the surrounding code. The whitespace before the closing quotation marks (`"""`) tells Swift what whitespace to ignore before all of the other lines. However, if you write whitespace at the beginning of a line in addition to what’s before the closing quotation marks, that whitespace *is* included.
+A multiline string can be indented to match the surrounding code. The whitespace before the closing quotation marks (`"""`) tells Swift what whitespace to ignore before all of the other lines. However, if you write whitespace at the beginning of a line in addition to what’s before the closing quotation marks, that whitespace _is_ included.
 
-<img src="https://docs.swift.org/swift-book/images/multilineStringWhitespace~dark@2x.png" alt="img" style="zoom:67%;" />
-
-
+![img](https://docs.swift.org/swift-book/images/multilineStringWhitespace\~dark@2x.png)
 
 In the example above, even though the entire multiline string literal is indented, the first and last lines in the string don’t begin with any whitespace. The middle line has more indentation than the closing quotation marks, so it starts with that extra four-space indentation.
 
-
-
-### Special Characters in String Literals
+#### Special Characters in String Literals
 
 String literals can include the following special characters:
 
-- The escaped special characters `\0` (null character), `\\` (backslash), `\t` (horizontal tab), `\n` (line feed), `\r` (carriage return), `\"` (double quotation mark) and `\'` (single quotation mark)
-- An arbitrary Unicode scalar value, written as `\\u{`*n*`}`, where *n* is a 1–8 digit hexadecimal number (Unicode is discussed in [Unicode](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/stringsandcharacters#Unicode) below)
+* The escaped special characters `\0` (null character), `\\` (backslash),  (horizontal tab),  (line feed),  (carriage return), `\"` (double quotation mark) and `\'` (single quotation mark)
+* An arbitrary Unicode scalar value, written as `\\u{`_n_`}`, where _n_ is a 1–8 digit hexadecimal number (Unicode is discussed in [Unicode](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/stringsandcharacters#Unicode) below)
 
 The code below shows four examples of these special characters. The `wiseWords` constant contains two escaped double quotation marks. The `dollarSign`, `blackHeart`, and `sparklingHeart` constants demonstrate the Unicode scalar format:
 
@@ -120,11 +110,9 @@ Escaping all three quotation marks \"\"\"
 """
 ```
 
+#### Extended String Delimiters
 
-
-### Extended String Delimiters
-
-You can place a string literal within *extended delimiters* to include special characters in a string without invoking their effect. You place your string within quotation marks (`"`) and surround that with number signs (`#`). For example, printing the string literal `#"Line 1\nLine 2"#` prints the line feed escape sequence (`\n`) rather than printing the string across two lines.
+You can place a string literal within _extended delimiters_ to include special characters in a string without invoking their effect. You place your string within quotation marks (`"`) and surround that with number signs (`#`). For example, printing the string literal `#"Line 1\nLine 2"#` prints the line feed escape sequence () rather than printing the string across two lines.
 
 If you need the special effects of a character in a string literal, match the number of number signs within the string following the escape character (`\`). For example, if your string is `#"Line 1\nLine 2"#` and you want to break the line, you can use `#"Line 1\#nLine 2"#` instead. Similarly, `###"Line1\###nLine2"###` also breaks the line.
 
@@ -136,9 +124,7 @@ Here are three more double quotes: """
 """#
 ```
 
-
-
-## Initializing an Empty String
+### Initializing an Empty String
 
 To create an empty `String` value as the starting point for building a longer string, either assign an empty string literal to a variable or initialize a new `String` instance with initializer syntax:
 
@@ -154,11 +140,9 @@ Find out whether a `String` value is empty by checking its Boolean `isEmpty` pro
 if emptyString.isEmpty {    print("Nothing to see here")}// Prints "Nothing to see here"
 ```
 
+### String Mutability
 
-
-## String Mutability
-
-You indicate whether a particular `String` can be modified (or *mutated*) by assigning it to a variable (in which case it can be modified), or to a constant (in which case it can’t be modified):
+You indicate whether a particular `String` can be modified (or _mutated_) by assigning it to a variable (in which case it can be modified), or to a constant (in which case it can’t be modified):
 
 ```swift
 var variableString = "Horse"variableString += " and carriage"// variableString is now "Horse and carriage"
@@ -169,19 +153,15 @@ Note
 
 This approach is different from string mutation in Objective-C and Cocoa, where you choose between two classes (`NSString` and `NSMutableString`) to indicate whether a string can be mutated.
 
+### Strings Are Value Types
 
-
-## Strings Are Value Types
-
-Swift’s `String` type is a *value type*. If you create a new `String` value, that `String` value is *copied* when it’s passed to a function or method, or when it’s assigned to a constant or variable. In each case, a new copy of the existing `String` value is created, and the new copy is passed or assigned, not the original version. Value types are described in [Structures and Enumerations Are Value Types](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/classesandstructures#Structures-and-Enumerations-Are-Value-Types).
+Swift’s `String` type is a _value type_. If you create a new `String` value, that `String` value is _copied_ when it’s passed to a function or method, or when it’s assigned to a constant or variable. In each case, a new copy of the existing `String` value is created, and the new copy is passed or assigned, not the original version. Value types are described in [Structures and Enumerations Are Value Types](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/classesandstructures#Structures-and-Enumerations-Are-Value-Types).
 
 Swift’s copy-by-default `String` behavior ensures that when a function or method passes you a `String` value, it’s clear that you own that exact `String` value, regardless of where it came from. You can be confident that the string you are passed won’t be modified unless you modify it yourself.
 
 Behind the scenes, Swift’s compiler optimizes string usage so that actual copying takes place only when absolutely necessary. This means you always get great performance when working with strings as value types.
 
-
-
-## Working with Characters
+### Working with Characters
 
 You can access the individual `Character` values for a `String` by iterating over the string with a `for`-`in` loop:
 
@@ -213,11 +193,9 @@ print(catString)
 // Prints "Cat!🐱"
 ```
 
+### Concatenating Strings and Characters
 
-
-## Concatenating Strings and Characters
-
-`String` values can be added together (or *concatenated*) with the addition operator (`+`) to create a new `String` value:
+`String` values can be added together (or _concatenated_) with the addition operator (`+`) to create a new `String` value:
 
 ```swift
 let string1 = "hello"
@@ -245,8 +223,6 @@ welcome.append(exclamationMark)
 > **Note**
 >
 > You can’t append a `String` or `Character` to an existing `Character` variable, because a `Character` value must contain a single character only.
-
-
 
 If you’re using multiline string literals to build up the lines of a longer string, you want every line in the string to end with a line break, including the last line. For example:
 
@@ -277,13 +253,9 @@ print(goodStart + end)
 
 In the code above, concatenating `badStart` with `end` produces a two-line string, which isn’t the desired result. Because the last line of `badStart` doesn’t end with a line break, that line gets combined with the first line of `end`. In contrast, both lines of `goodStart` end with a line break, so when it’s combined with `end` the result has three lines, as expected.
 
+### String Interpolation
 
-
-## String Interpolation
-
-
-
-*String interpolation* is a way to construct a new `String` value from a mix of constants, variables, literals, and expressions by including their values inside a string literal. You can use string interpolation in both single-line and multiline string literals. Each item that you insert into the string literal is wrapped in a pair of parentheses, prefixed by a backslash (`\`):
+_String interpolation_ is a way to construct a new `String` value from a mix of constants, variables, literals, and expressions by including their values inside a string literal. You can use string interpolation in both single-line and multiline string literals. Each item that you insert into the string literal is wrapped in a pair of parentheses, prefixed by a backslash (`\`):
 
 ```swift
 let multiplier = 3
@@ -313,29 +285,21 @@ print(#"6 times 7 is \#(6 * 7)."#)
 >
 > The expressions you write inside parentheses within an interpolated string can’t contain an unescaped backslash (`\`), a carriage return, or a line feed. However, they can contain other string literals.
 
+### Unicode
 
+_Unicode_ is an international standard for encoding, representing, and processing text in different writing systems. It enables you to represent almost any character from any language in a standardized form, and to read and write those characters to and from an external source such as a text file or web page. Swift’s `String` and `Character` types are fully Unicode-compliant, as described in this section.
 
-## Unicode
+#### Unicode Scalar Values
 
-
-
-*Unicode* is an international standard for encoding, representing, and processing text in different writing systems. It enables you to represent almost any character from any language in a standardized form, and to read and write those characters to and from an external source such as a text file or web page. Swift’s `String` and `Character` types are fully Unicode-compliant, as described in this section.
-
-
-
-### Unicode Scalar Values
-
-Behind the scenes, Swift’s native `String` type is built from *Unicode scalar values*. A Unicode scalar value is a unique 21-bit number for a character or modifier, such as `U+0061` for `LATIN SMALL LETTER A` (`"a"`), or `U+1F425` for `FRONT-FACING BABY CHICK` (`"🐥"`).
+Behind the scenes, Swift’s native `String` type is built from _Unicode scalar values_. A Unicode scalar value is a unique 21-bit number for a character or modifier, such as `U+0061` for `LATIN SMALL LETTER A` (`"a"`), or `U+1F425` for `FRONT-FACING BABY CHICK` (`"🐥"`).
 
 Note that not all 21-bit Unicode scalar values are assigned to a character — some scalars are reserved for future assignment or for use in UTF-16 encoding. Scalar values that have been assigned to a character typically also have a name, such as `LATIN SMALL LETTER A` and `FRONT-FACING BABY CHICK` in the examples above.
 
+#### Extended Grapheme Clusters
 
+Every instance of Swift’s `Character` type represents a single _extended grapheme cluster_. An extended grapheme cluster is a sequence of one or more Unicode scalars that (when combined) produce a single human-readable character.
 
-### Extended Grapheme Clusters
-
-Every instance of Swift’s `Character` type represents a single *extended grapheme cluster*. An extended grapheme cluster is a sequence of one or more Unicode scalars that (when combined) produce a single human-readable character.
-
-Here’s an example. The letter `é` can be represented as the single Unicode scalar `é` (`LATIN SMALL LETTER E WITH ACUTE`, or `U+00E9`). However, the same letter can also be represented as a *pair* of scalars — a standard letter `e` (`LATIN SMALL LETTER E`, or `U+0065`), followed by the `COMBINING ACUTE ACCENT` scalar (`U+0301`). The `COMBINING ACUTE ACCENT` scalar is graphically applied to the scalar that precedes it, turning an `e` into an `é` when it’s rendered by a Unicode-aware text-rendering system.
+Here’s an example. The letter `é` can be represented as the single Unicode scalar `é` (`LATIN SMALL LETTER E WITH ACUTE`, or `U+00E9`). However, the same letter can also be represented as a _pair_ of scalars — a standard letter `e` (`LATIN SMALL LETTER E`, or `U+0065`), followed by the `COMBINING ACUTE ACCENT` scalar (`U+0301`). The `COMBINING ACUTE ACCENT` scalar is graphically applied to the scalar that precedes it, turning an `e` into an `é` when it’s rendered by a Unicode-aware text-rendering system.
 
 In both cases, the letter `é` is represented as a single Swift `Character` value that represents an extended grapheme cluster. In the first case, the cluster contains a single scalar; in the second case, it’s a cluster of two scalars:
 
@@ -361,11 +325,7 @@ Unicode scalars for regional indicator symbols can be combined in pairs to make 
 let regionalIndicatorForUS: Character = "\u{1F1FA}\u{1F1F8}"// regionalIndicatorForUS is 🇺🇸
 ```
 
-
-
-## Counting Characters
-
-
+### Counting Characters
 
 To retrieve a count of the `Character` values in a string, use the `count` property of the string:
 
@@ -389,13 +349,13 @@ print("the number of characters in \(word) is \(word.count)")// Prints "the numb
 
 The count of the characters returned by the `count` property isn’t always the same as the `length` property of an `NSString` that contains the same characters. The length of an `NSString` is based on the number of 16-bit code units within the string’s UTF-16 representation and not the number of Unicode extended grapheme clusters within the string.
 
-## Accessing and Modifying a String
+### Accessing and Modifying a String
 
 You access and modify a string through its methods and properties, or by using subscript syntax.
 
-### String Indices
+#### String Indices
 
-Each `String` value has an associated *index type*, `String.Index`, which corresponds to the position of each `Character` in the string.
+Each `String` value has an associated _index type_, `String.Index`, which corresponds to the position of each `Character` in the string.
 
 As mentioned above, different characters can require different amounts of memory to store, so in order to determine which `Character` is at a particular position, you must iterate over each Unicode scalar from the start or end of that `String`. For this reason, Swift strings can’t be indexed by integer values.
 
@@ -425,9 +385,7 @@ Note
 
 You can use the `startIndex` and `endIndex` properties and the `index(before:)`, `index(after:)`, and `index(_:offsetBy:)` methods on any type that conforms to the `Collection` protocol. This includes `String`, as shown here, as well as collection types such as `Array`, `Dictionary`, and `Set`.
 
-
-
-### Inserting and Removing
+#### Inserting and Removing
 
 To insert a single character into a string at a specified index, use the `insert(_:at:)` method, and to insert the contents of another string at a specified index, use the `insert(contentsOf:at:)` method.
 
@@ -447,9 +405,7 @@ Note
 
 You can use the `insert(_:at:)`, `insert(contentsOf:at:)`, `remove(at:)`, and `removeSubrange(_:)` methods on any type that conforms to the `RangeReplaceableCollection` protocol. This includes `String`, as shown here, as well as collection types such as `Array`, `Dictionary`, and `Set`.
 
-
-
-## Substrings
+### Substrings
 
 When you get a substring from a string — for example, using a subscript or a method like `prefix(_:)` — the result is an instance of [`Substring`](https://developer.apple.com/documentation/swift/substring), not another string. Substrings in Swift have most of the same methods as strings, which means you can work with substrings the same way you work with strings. However, unlike strings, you use substrings for only a short amount of time while performing actions on a string. When you’re ready to store the result for a longer time, you convert the substring to an instance of `String`. For example:
 
@@ -462,17 +418,17 @@ Like strings, each substring has a region of memory where the characters that ma
 
 In the example above, `greeting` is a string, which means it has a region of memory where the characters that make up the string are stored. Because `beginning` is a substring of `greeting`, it reuses the memory that `greeting` uses. In contrast, `newString` is a string — when it’s created from the substring, it has its own storage. The figure below shows these relationships:
 
-<img src="https://docs.swift.org/swift-book/images/stringSubstring@2x.png" alt="img" style="zoom:50%;" />
+![img](https://docs.swift.org/swift-book/images/stringSubstring@2x.png)
 
 Note
 
 Both `String` and `Substring` conform to the [`StringProtocol`](https://developer.apple.com/documentation/swift/stringprotocol) protocol, which means it’s often convenient for string-manipulation functions to accept a `StringProtocol` value. You can call such functions with either a `String` or `Substring` value.
 
-## [Comparing Strings](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/stringsandcharacters#Comparing-Strings)
+### [Comparing Strings](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/stringsandcharacters#Comparing-Strings)
 
 Swift provides three ways to compare textual values: string and character equality, prefix equality, and suffix equality.
 
-### [String and Character Equality](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/stringsandcharacters#String-and-Character-Equality)
+#### [String and Character Equality](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/stringsandcharacters#String-and-Character-Equality)
 
 String and character equality is checked with the “equal to” operator (`==`) and the “not equal to” operator (`!=`), as described in [Comparison Operators](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/basicoperators#Comparison-Operators):
 
@@ -480,7 +436,7 @@ String and character equality is checked with the “equal to” operator (`==`)
 let quotation = "We're a lot alike, you and I."let sameQuotation = "We're a lot alike, you and I."if quotation == sameQuotation {    print("These two strings are considered equal")}// Prints "These two strings are considered equal"
 ```
 
-Two `String` values (or two `Character` values) are considered equal if their extended grapheme clusters are *canonically equivalent*. Extended grapheme clusters are canonically equivalent if they have the same linguistic meaning and appearance, even if they’re composed from different Unicode scalars behind the scenes.
+Two `String` values (or two `Character` values) are considered equal if their extended grapheme clusters are _canonically equivalent_. Extended grapheme clusters are canonically equivalent if they have the same linguistic meaning and appearance, even if they’re composed from different Unicode scalars behind the scenes.
 
 For example, `LATIN SMALL LETTER E WITH ACUTE` (`U+00E9`) is canonically equivalent to `LATIN SMALL LETTER E` (`U+0065`) followed by `COMBINING ACUTE ACCENT` (`U+0301`). Both of these extended grapheme clusters are valid ways to represent the character `é`, and so they’re considered to be canonically equivalent:
 
@@ -490,7 +446,7 @@ For example, `LATIN SMALL LETTER E WITH ACUTE` (`U+00E9`) is canonically equival
 if eAcuteQuestion == combinedEAcuteQuestion {    print("These two strings are considered equal")}// Prints "These two strings are considered equal"
 ```
 
-Conversely, `LATIN CAPITAL LETTER A` (`U+0041`, or `"A"`), as used in English, is *not* equivalent to `CYRILLIC CAPITAL LETTER A` (`U+0410`, or `"А"`), as used in Russian. The characters are visually similar, but don’t have the same linguistic meaning:
+Conversely, `LATIN CAPITAL LETTER A` (`U+0041`, or `"A"`), as used in English, is _not_ equivalent to `CYRILLIC CAPITAL LETTER A` (`U+0410`, or `"А"`), as used in Russian. The characters are visually similar, but don’t have the same linguistic meaning:
 
 ```swift
 let latinCapitalLetterA: Character = "\u{41}"
@@ -502,11 +458,11 @@ Note
 
 String and character comparisons in Swift aren’t locale-sensitive.
 
-### [Prefix and Suffix Equality](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/stringsandcharacters#Prefix-and-Suffix-Equality)
+#### [Prefix and Suffix Equality](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/stringsandcharacters#Prefix-and-Suffix-Equality)
 
 To check whether a string has a particular string prefix or suffix, call the string’s `hasPrefix(_:)` and `hasSuffix(_:)` methods, both of which take a single argument of type `String` and return a Boolean value.
 
-The examples below consider an array of strings representing the scene locations from the first two acts of Shakespeare’s *Romeo and Juliet*:
+The examples below consider an array of strings representing the scene locations from the first two acts of Shakespeare’s _Romeo and Juliet_:
 
 ```swift
 let romeoAndJuliet = [    "Act 1 Scene 1: Verona, A public place",    "Act 1 Scene 2: Capulet's mansion",    "Act 1 Scene 3: A room in Capulet's mansion",    "Act 1 Scene 4: A street outside Capulet's mansion",    "Act 1 Scene 5: The Great Hall in Capulet's mansion",    "Act 2 Scene 1: Outside Capulet's mansion",    "Act 2 Scene 2: Capulet's orchard",    "Act 2 Scene 3: Outside Friar Lawrence's cell",    "Act 2 Scene 4: A street in Verona",    "Act 2 Scene 5: Capulet's mansion",    "Act 2 Scene 6: Friar Lawrence's cell"]
@@ -538,17 +494,17 @@ print("\(mansionCount) mansion scenes; \(cellCount) cell scenes")
 >
 > The `hasPrefix(_:)` and `hasSuffix(_:)` methods perform a character-by-character canonical equivalence comparison between the extended grapheme clusters in each string, as described in [String and Character Equality](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/stringsandcharacters#String-and-Character-Equality).
 
-## [Unicode Representations of Strings](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/stringsandcharacters#Unicode-Representations-of-Strings)
+### [Unicode Representations of Strings](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/stringsandcharacters#Unicode-Representations-of-Strings)
 
-When a Unicode string is written to a text file or some other storage, the Unicode scalars in that string are encoded in one of several Unicode-defined *encoding forms*. Each form encodes the string in small chunks known as *code units*. These include the UTF-8 encoding form (which encodes a string as 8-bit code units), the UTF-16 encoding form (which encodes a string as 16-bit code units), and the UTF-32 encoding form (which encodes a string as 32-bit code units).
+When a Unicode string is written to a text file or some other storage, the Unicode scalars in that string are encoded in one of several Unicode-defined _encoding forms_. Each form encodes the string in small chunks known as _code units_. These include the UTF-8 encoding form (which encodes a string as 8-bit code units), the UTF-16 encoding form (which encodes a string as 16-bit code units), and the UTF-32 encoding form (which encodes a string as 32-bit code units).
 
 Swift provides several different ways to access Unicode representations of strings. You can iterate over the string with a `for`-`in` statement, to access its individual `Character` values as Unicode extended grapheme clusters. This process is described in [Working with Characters](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/stringsandcharacters#Working-with-Characters).
 
 Alternatively, access a `String` value in one of three other Unicode-compliant representations:
 
-- A collection of UTF-8 code units (accessed with the string’s `utf8` property)
-- A collection of UTF-16 code units (accessed with the string’s `utf16` property)
-- A collection of 21-bit Unicode scalar values, equivalent to the string’s UTF-32 encoding form (accessed with the string’s `unicodeScalars` property)
+* A collection of UTF-8 code units (accessed with the string’s `utf8` property)
+* A collection of UTF-16 code units (accessed with the string’s `utf16` property)
+* A collection of 21-bit Unicode scalar values, equivalent to the string’s UTF-32 encoding form (accessed with the string’s `unicodeScalars` property)
 
 Each example below shows a different representation of the following string, which is made up of the characters `D`, `o`, `g`, `‼` (`DOUBLE EXCLAMATION MARK`, or Unicode scalar `U+203C`), and the 🐶 character (`DOG FACE`, or Unicode scalar `U+1F436`):
 
@@ -556,11 +512,11 @@ Each example below shows a different representation of the following string, whi
 let dogString = "Dog‼🐶"
 ```
 
-### [UTF-8 Representation](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/stringsandcharacters#UTF-8-Representation)
+#### [UTF-8 Representation](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/stringsandcharacters#UTF-8-Representation)
 
 You can access a UTF-8 representation of a `String` by iterating over its `utf8` property. This property is of type `String.UTF8View`, which is a collection of unsigned 8-bit (`UInt8`) values, one for each byte in the string’s UTF-8 representation:
 
-<img src="https://docs.swift.org/swift-book/images/UTF8@2x.png" alt="img" style="zoom:50%;" />
+![img](https://docs.swift.org/swift-book/images/UTF8@2x.png)
 
 ```swift
 for codeUnit in dogString.utf8 {
@@ -572,11 +528,11 @@ print("")
 
 In the example above, the first three decimal `codeUnit` values (`68`, `111`, `103`) represent the characters `D`, `o`, and `g`, whose UTF-8 representation is the same as their ASCII representation. The next three decimal `codeUnit` values (`226`, `128`, `188`) are a three-byte UTF-8 representation of the `DOUBLE EXCLAMATION MARK` character. The last four `codeUnit` values (`240`, `159`, `144`, `182`) are a four-byte UTF-8 representation of the `DOG FACE` character.
 
-### [UTF-16 Representation](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/stringsandcharacters#UTF-16-Representation)
+#### [UTF-16 Representation](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/stringsandcharacters#UTF-16-Representation)
 
 You can access a UTF-16 representation of a `String` by iterating over its `utf16` property. This property is of type `String.UTF16View`, which is a collection of unsigned 16-bit (`UInt16`) values, one for each 16-bit code unit in the string’s UTF-16 representation:
 
-<img src="https://docs.swift.org/swift-book/images/UTF16@2x.png" alt="img" style="zoom:50%;" />
+![img](https://docs.swift.org/swift-book/images/UTF16@2x.png)
 
 ```swift
 for codeUnit in dogString.utf16 {
@@ -592,13 +548,13 @@ The fourth `codeUnit` value (`8252`) is a decimal equivalent of the hexadecimal 
 
 The fifth and sixth `codeUnit` values (`55357` and `56374`) are a UTF-16 surrogate pair representation of the `DOG FACE` character. These values are a high-surrogate value of `U+D83D` (decimal value `55357`) and a low-surrogate value of `U+DC36` (decimal value `56374`).
 
-### [Unicode Scalar Representation](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/stringsandcharacters#Unicode-Scalar-Representation)
+#### [Unicode Scalar Representation](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/stringsandcharacters#Unicode-Scalar-Representation)
 
 You can access a Unicode scalar representation of a `String` value by iterating over its `unicodeScalars` property. This property is of type `UnicodeScalarView`, which is a collection of values of type `UnicodeScalar`.
 
 Each `UnicodeScalar` has a `value` property that returns the scalar’s 21-bit value, represented within a `UInt32` value:
 
-<img src="https://docs.swift.org/swift-book/images/UnicodeScalar@2x.png" alt="img" style="zoom:50%;" />
+![img](https://docs.swift.org/swift-book/images/UnicodeScalar@2x.png)
 
 ```swift
 for scalar in dogString.unicodeScalars {
@@ -626,7 +582,5 @@ for scalar in dogString.unicodeScalars {
 // ‼
 // 🐶
 ```
-
-
 
 [Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)
