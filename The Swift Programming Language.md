@@ -44,18 +44,18 @@
 
 [Nested Types](<Nested Types.md>) - Define types inside the scope of another type.
 
-[Extensions](Extensions.html) - Add functionality to an existing type.
+[Extensions](Extensions.md) - Add functionality to an existing type.
 
-[Protocols](Protocols.html) - Define requirements that conforming types must implement.
+[Protocols](Protocols.md) - Define requirements that conforming types must implement.
 
-[Generics](Generics.html) - Write code that works for multiple types and specify requirements for those types.
+[Generics](Generics.md) - Write code that works for multiple types and specify requirements for those types.
 
-[Opaque Types](Opaque%20Types.html) - Hide implementation details about a value’s type.
+[Opaque Types](<Opaque Types.md>) - Hide implementation details about a value’s type.
 
-[Automatic Reference Counting](Automatic%20Reference%20Counting.html) - Model the lifetime of objects and their relationships.
+[Automatic Reference Counting](<Automatic Reference Counting.md>) - Model the lifetime of objects and their relationships.
 
-[Memory Safety](Memory%20Safety.html) - Structure your code to avoid conflicts when accessing memory.
+[Memory Safety](<Memory Safety.md>) - Structure your code to avoid conflicts when accessing memory.
 
-[Access Control](Access%20Control.html) - Manage the visibility of code by declaration, file, and module.
+[Access Control](./) - Manage the visibility of code by declaration, file, and module.
 
-[Advanced Operators](Advanced%20Operators.html) - Define custom operators, perform bitwise operations, and use builder syntax.
+[Advanced Operators](<Advanced Operators.md>) - Define custom operators, perform bitwise operations, and use builder syntax.
