@@ -27,5 +27,5 @@
 * [Structures and Classes](<Structures and Classes.md>)
 * [Subscripts](Subscripts.md)
 * [The Basics](<The Basics.md>)
-* [The Swift Programming Language !\[swift-logo\](/Volumes/laravel/Swift Language Guide/swift-logo.svg)](<The Swift Programming Language.md>)
+* [The Swift Programming Language](<The Swift Programming Language.md>)
 * [Type Casting](<Type Casting.md>)
