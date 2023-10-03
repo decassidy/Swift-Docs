@@ -1,20 +1,18 @@
-[Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)
-
-[TOC]
-
 # Nested Types
 
-### Define types inside the scope of another type.
+[Swift Language Guide - Table of Contents](./)
 
+\[TOC]
 
+## Nested Types
 
-Enumerations are often created to support a specific class or structure’s functionality. Similarly, it can be convenient to define utility classes and structures purely for use within the context of a more complex type. To accomplish this, Swift enables you to define *nested types*, whereby you nest supporting enumerations, classes, and structures within the definition of the type they support.
+#### Define types inside the scope of another type.
+
+Enumerations are often created to support a specific class or structure’s functionality. Similarly, it can be convenient to define utility classes and structures purely for use within the context of a more complex type. To accomplish this, Swift enables you to define _nested types_, whereby you nest supporting enumerations, classes, and structures within the definition of the type they support.
 
 To nest a type within another type, write its definition within the outer braces of the type it supports. Types can be nested to as many levels as are required.
 
-
-
-## Nested Types in Action
+### Nested Types in Action
 
 The example below defines a structure called `BlackjackCard`, which models a playing card as used in the game of Blackjack. The `BlackjackCard` structure contains two nested enumeration types called `Suit` and `Rank`.
 
@@ -66,8 +64,8 @@ The `Rank` enumeration describes the thirteen possible playing card ranks, toget
 
 As mentioned above, the `Rank` enumeration defines a further nested structure of its own, called `Values`. This structure encapsulates the fact that most cards have one value, but the Ace card has two values. The `Values` structure defines two properties to represent this:
 
-- `first`, of type `Int`
-- `second`, of type `Int?`, or “optional `Int`”
+* `first`, of type `Int`
+* `second`, of type `Int?`, or “optional `Int`”
 
 `Rank` also defines a computed property, `values`, which returns an instance of the `Values` structure. This computed property considers the rank of the card and initializes a new `Values` instance with appropriate values based on its rank. It uses special values for `jack`, `queen`, `king`, and `ace`. For the numeric cards, it uses the rank’s raw `Int` value.
 
@@ -83,9 +81,7 @@ print("theAceOfSpades: \(theAceOfSpades.description)")
 
 Even though `Rank` and `Suit` are nested within `BlackjackCard`, their type can be inferred from context, and so the initialization of this instance is able to refer to the enumeration cases by their case names (`.ace` and `.spades`) alone. In the example above, the `description` property correctly reports that the Ace of Spades has a value of `1` or `11`.
 
-
-
-## Referring to Nested Types
+### Referring to Nested Types
 
 To use a nested type outside of its definition context, prefix its name with the name of the type it’s nested within:
 
@@ -95,7 +91,5 @@ let heartsSymbol = BlackjackCard.Suit.hearts.rawValue
 ```
 
 For the example above, this enables the names of `Suit`, `Rank`, and `Values` to be kept deliberately short, because their names are naturally qualified by the context in which they’re defined.
-
-
 
 [Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)

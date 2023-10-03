@@ -1,18 +1,16 @@
-[Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)
-
-[TOC]
-
 # Opaque Types
 
-### Hide implementation details about a value’s type.
+[Swift Language Guide - Table of Contents](./)
 
+\[TOC]
 
+## Opaque Types
+
+#### Hide implementation details about a value’s type.
 
 A function or method with an opaque return type hides its return value’s type information. Instead of providing a concrete type as the function’s return type, the return value is described in terms of the protocols it supports. Hiding type information is useful at boundaries between a module and code that calls into the module, because the underlying type of the return value can remain private. Unlike returning a value whose type is a protocol type, opaque types preserve type identity — the compiler has access to the type information, but clients of the module don’t.
 
-
-
-## The Problem That Opaque Types Solve
+### The Problem That Opaque Types Solve
 
 For example, suppose you’re writing a module that draws ASCII art shapes. The basic characteristic of an ASCII art shape is a `draw()` function that returns the string representation of that shape, which you can use as the requirement for the `Shape` protocol:
 
@@ -77,9 +75,7 @@ print(joinedTriangles.draw())
 
 Exposing detailed information about the creation of a shape allows types that aren’t meant to be part of the ASCII art module’s public interface to leak out because of the need to state the full return type. The code inside the module could build up the same shape in a variety of ways, and other code outside the module that uses the shape shouldn’t have to account for the implementation details about the list of transformations. Wrapper types like `JoinedShape` and `FlippedShape` don’t matter to the module’s users, and they shouldn’t be visible. The module’s public interface consists of operations like joining and flipping a shape, and those operations return another `Shape` value.
 
-
-
-## Returning an Opaque Type
+### Returning an Opaque Type
 
 You can think of an opaque type like being the reverse of a generic type. Generic types let the code that calls a function pick the type for that function’s parameters and return value in a way that’s abstracted away from the function implementation. For example, the function in the following code returns a type that depends on its caller:
 
@@ -147,7 +143,7 @@ print(opaqueJoinedTriangles.draw())
 
 The value of `opaqueJoinedTriangles` in this example is the same as `joinedTriangles` in the generics example in the [The Problem That Opaque Types Solve](Opaque%20Types.html#The-Problem-That-Opaque-Types-Solve) section earlier in this chapter. However, unlike the value in that example, `flip(_:)` and `join(_:_:)` wrap the underlying types that the generic shape operations return in an opaque return type, which prevents those types from being visible. Both functions are generic because the types they rely on are generic, and the type parameters to the function pass along the type information needed by `FlippedShape` and `JoinedShape`.
 
-If a function with an opaque return type returns from multiple places, all of the possible return values must have the same type. For a generic function, that return type can use the function’s generic type parameters, but it must still be a single type. For example, here’s an *invalid* version of the shape-flipping function that includes a special case for squares:
+If a function with an opaque return type returns from multiple places, all of the possible return values must have the same type. For a generic function, that return type can use the function’s generic type parameters, but it must still be a single type. For example, here’s an _invalid_ version of the shape-flipping function that includes a special case for squares:
 
 ```Swift
 func invalidFlip<T: Shape>(_ shape: T) -> some Shape {
@@ -183,9 +179,7 @@ func `repeat`<T: Shape>(shape: T, count: Int) -> some Collection {
 
 In this case, the underlying type of the return value varies depending on `T`: Whatever shape is passed it, `repeat(shape:count:)` creates and returns an array of that shape. Nevertheless, the return value always has the same underlying type of `[T]`, so it follows the requirement that functions with opaque return types must return values of only a single type.
 
-
-
-## Differences Between Opaque Types and Protocol Types
+### Differences Between Opaque Types and Protocol Types
 
 Returning an opaque type looks very similar to using a protocol type as the return type of a function, but these two kinds of return type differ in whether they preserve type identity. An opaque type refers to one specific type, although the caller of the function isn’t able to see which type; a protocol type can refer to any type that conforms to the protocol. Generally speaking, protocol types give you more flexibility about the underlying types of the values they store, and opaque types let you make stronger guarantees about those underlying types.
 
@@ -261,7 +255,5 @@ print(type(of: twelve))
 ```
 
 The type of `twelve` is inferred to be `Int`, which illustrates the fact that type inference works with opaque types. In the implementation of `makeOpaqueContainer(item:)`, the underlying type of the opaque container is `[T]`. In this case, `T` is `Int`, so the return value is an array of integers and the `Item` associated type is inferred to be `Int`. The subscript on `Container` returns `Item`, which means that the type of `twelve` is also inferred to be `Int`.
-
-
 
 [Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)

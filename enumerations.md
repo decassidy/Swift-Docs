@@ -1,22 +1,22 @@
-[Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)
-
 # Enumerations
 
-### Model custom types that define a list of possible values.
+[Swift Language Guide - Table of Contents](./)
 
-An *enumeration* defines a common type for a group of related values and enables you to work with those values in a type-safe way within your code.
+## Enumerations
 
-If you are familiar with C, you will know that C enumerations assign related names to a set of integer values. Enumerations in Swift are much more flexible, and don’t have to provide a value for each case of the enumeration. If a value (known as a *raw* value) is provided for each enumeration case, the value can be a string, a character, or a value of any integer or floating-point type.
+#### Model custom types that define a list of possible values.
 
-Alternatively, enumeration cases can specify associated values of *any* type to be stored along with each different case value, much as unions or variants do in other languages. You can define a common set of related cases as part of one enumeration, each of which has a different set of values of appropriate types associated with it.
+An _enumeration_ defines a common type for a group of related values and enables you to work with those values in a type-safe way within your code.
+
+If you are familiar with C, you will know that C enumerations assign related names to a set of integer values. Enumerations in Swift are much more flexible, and don’t have to provide a value for each case of the enumeration. If a value (known as a _raw_ value) is provided for each enumeration case, the value can be a string, a character, or a value of any integer or floating-point type.
+
+Alternatively, enumeration cases can specify associated values of _any_ type to be stored along with each different case value, much as unions or variants do in other languages. You can define a common set of related cases as part of one enumeration, each of which has a different set of values of appropriate types associated with it.
 
 Enumerations in Swift are first-class types in their own right. They adopt many features traditionally supported only by classes, such as computed properties to provide additional information about the enumeration’s current value, and instance methods to provide functionality related to the values the enumeration represents. Enumerations can also define initializers to provide an initial case value; can be extended to expand their functionality beyond their original implementation; and can conform to protocols to provide standard functionality.
 
 For more about these capabilities, see [Properties](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/properties), [Methods](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/methods), [Initialization](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/initialization), [Extensions](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/extensions), and [Protocols](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/protocols).
 
-
-
-## Enumeration Syntax
+### Enumeration Syntax
 
 You introduce enumerations with the `enum` keyword and place their entire definition within a pair of braces:
 
@@ -37,11 +37,11 @@ enum CompassPoint {
 }
 ```
 
-The values defined in an enumeration (such as `north`, `south`, `east`, and `west`) are its *enumeration cases*. You use the `case` keyword to introduce new enumeration cases.
+The values defined in an enumeration (such as `north`, `south`, `east`, and `west`) are its _enumeration cases_. You use the `case` keyword to introduce new enumeration cases.
 
->**Note**
+> **Note**
 >
->Swift enumeration cases don’t have an integer value set by default, unlike languages like C and Objective-C. In the `CompassPoint` example above, `north`, `south`, `east` and `west` don’t implicitly equal `0`, `1`, `2` and `3`. Instead, the different enumeration cases are values in their own right, with an explicitly defined type of `CompassPoint`.
+> Swift enumeration cases don’t have an integer value set by default, unlike languages like C and Objective-C. In the `CompassPoint` example above, `north`, `south`, `east` and `west` don’t implicitly equal `0`, `1`, `2` and `3`. Instead, the different enumeration cases are values in their own right, with an explicitly defined type of `CompassPoint`.
 
 Multiple cases can appear on a single line, separated by commas:
 
@@ -65,9 +65,7 @@ directionToHead = .east
 
 The type of `directionToHead` is already known, and so you can drop the type when setting its value. This makes for highly readable code when working with explicitly typed enumeration values.
 
-
-
-## Matching Enumeration Values with a Switch Statement
+### Matching Enumeration Values with a Switch Statement
 
 You can match individual enumeration values with a `switch` statement:
 
@@ -107,9 +105,7 @@ default:
 // Prints "Mostly harmless"
 ```
 
-
-
-## Iterating over Enumeration Cases
+### Iterating over Enumeration Cases
 
 For some enumerations, it’s useful to have a collection of all of that enumeration’s cases. You enable this by writing `: CaseIterable` after the enumeration’s name. Swift exposes a collection of all the cases as an `allCases` property of the enumeration type. Here’s an example:
 
@@ -135,21 +131,19 @@ for beverage in Beverage.allCases {
 
 The syntax used in the examples above marks the enumeration as conforming to the [`CaseIterable`](https://developer.apple.com/documentation/swift/caseiterable) protocol. For information about protocols, see [Protocols](Protocols.html).
 
+### Associated Values
 
+The examples in the previous section show how the cases of an enumeration are a defined (and typed) value in their own right. You can set a constant or variable to `Planet.earth`, and check for this value later. However, it’s sometimes useful to be able to store values of other types alongside these case values. This additional information is called an _associated value_, and it varies each time you use that case as a value in your code.
 
-## Associated Values
-
-The examples in the previous section show how the cases of an enumeration are a defined (and typed) value in their own right. You can set a constant or variable to `Planet.earth`, and check for this value later. However, it’s sometimes useful to be able to store values of other types alongside these case values. This additional information is called an *associated value*, and it varies each time you use that case as a value in your code.
-
-You can define Swift enumerations to store associated values of any given type, and the value types can be different for each case of the enumeration if needed. Enumerations similar to these are known as *discriminated unions*, *tagged unions*, or *variants* in other programming languages.
+You can define Swift enumerations to store associated values of any given type, and the value types can be different for each case of the enumeration if needed. Enumerations similar to these are known as _discriminated unions_, _tagged unions_, or _variants_ in other programming languages.
 
 For example, suppose an inventory tracking system needs to track products by two different types of barcode. Some products are labeled with 1D barcodes in UPC format, which uses the numbers `0` to `9`. Each barcode has a number system digit, followed by five manufacturer code digits and five product code digits. These are followed by a check digit to verify that the code has been scanned correctly:
 
-<img src="https://docs.swift.org/swift-book/images/barcode_UPC@2x.png" alt="img" style="zoom:50%;" />
+![img](https://docs.swift.org/swift-book/images/barcode\_UPC@2x.png)
 
 Other products are labeled with 2D barcodes in QR code format, which can use any ISO 8859-1 character and can encode a string up to 2,953 characters long:
 
-<img src="https://docs.swift.org/swift-book/images/barcode_QR@2x.png" alt="img" style="zoom:50%;" />
+![img](https://docs.swift.org/swift-book/images/barcode\_QR@2x.png)
 
 It’s convenient for an inventory tracking system to store UPC barcodes as a tuple of four integers, and QR code barcodes as a string of any length.
 
@@ -166,7 +160,7 @@ This can be read as:
 
 “Define an enumeration type called `Barcode`, which can take either a value of `upc` with an associated value of type (`Int`, `Int`, `Int`, `Int`), or a value of `qrCode` with an associated value of type `String`.”
 
-This definition doesn’t provide any actual `Int` or `String` values — it just defines the *type* of associated values that `Barcode` constants and variables can store when they’re equal to `Barcode.upc` or `Barcode.qrCode`.
+This definition doesn’t provide any actual `Int` or `String` values — it just defines the _type_ of associated values that `Barcode` constants and variables can store when they’re equal to `Barcode.upc` or `Barcode.qrCode`.
 
 You can then create new barcodes using either type:
 
@@ -208,11 +202,9 @@ case let .qrCode(productCode):
 // Prints "QR code: ABCDEFGHIJKLMNOP."
 ```
 
+### Raw Values
 
-
-## Raw Values
-
-The barcode example in [Associated Values](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/enumerations#Associated-Values) shows how cases of an enumeration can declare that they store associated values of different types. As an alternative to associated values, enumeration cases can come prepopulated with default values (called *raw values*), which are all of the same type.
+The barcode example in [Associated Values](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/enumerations#Associated-Values) shows how cases of an enumeration can declare that they store associated values of different types. As an alternative to associated values, enumeration cases can come prepopulated with default values (called _raw values_), which are all of the same type.
 
 Here’s an example that stores raw ASCII values alongside named enumeration cases:
 
@@ -228,13 +220,11 @@ Here, the raw values for an enumeration called `ASCIIControlCharacter` are defin
 
 Raw values can be strings, characters, or any of the integer or floating-point number types. Each raw value must be unique within its enumeration declaration.
 
->**Note**
+> **Note**
 >
->Raw values are *not* the same as associated values. Raw values are set to prepopulated values when you first define the enumeration in your code, like the three ASCII codes above. The raw value for a particular enumeration case is always the same. Associated values are set when you create a new constant or variable based on one of the enumeration’s cases, and can be different each time you do so.
+> Raw values are _not_ the same as associated values. Raw values are set to prepopulated values when you first define the enumeration in your code, like the three ASCII codes above. The raw value for a particular enumeration case is always the same. Associated values are set when you create a new constant or variable based on one of the enumeration’s cases, and can be different each time you do so.
 
-
-
-### Implicitly Assigned Raw Values
+#### Implicitly Assigned Raw Values
 
 When you’re working with enumerations that store integer or string raw values, you don’t have to explicitly assign a raw value for each case. When you don’t, Swift automatically assigns the values for you.
 
@@ -272,9 +262,7 @@ let sunsetDirection = CompassPoint.west.rawValue
 // sunsetDirection is "west"
 ```
 
-
-
-### Initializing from a Raw Value
+#### Initializing from a Raw Value
 
 If you define an enumeration with a raw-value type, the enumeration automatically receives an initializer that takes a value of the raw value’s type (as a parameter called `rawValue`) and returns either an enumeration case or `nil`. You can use this initializer to try to create a new instance of the enumeration.
 
@@ -285,11 +273,11 @@ let possiblePlanet = Planet(rawValue: 7)
 // possiblePlanet is of type Planet? and equals Planet.uranus
 ```
 
-Not all possible `Int` values will find a matching planet, however. Because of this, the raw value initializer always returns an *optional* enumeration case. In the example above, `possiblePlanet` is of type `Planet?`, or “optional `Planet`.”
+Not all possible `Int` values will find a matching planet, however. Because of this, the raw value initializer always returns an _optional_ enumeration case. In the example above, `possiblePlanet` is of type `Planet?`, or “optional `Planet`.”
 
->**Note**
+> **Note**
 >
->The raw value initializer is a failable initializer, because not every raw value will return an enumeration case. For more information, see [Failable Initializers](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/declarations#Failable-Initializers).
+> The raw value initializer is a failable initializer, because not every raw value will return an enumeration case. For more information, see [Failable Initializers](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/declarations#Failable-Initializers).
 
 If you try to find a planet with a position of `11`, the optional `Planet` value returned by the raw value initializer will be `nil`:
 
@@ -310,11 +298,9 @@ if let somePlanet = Planet(rawValue: positionToFind) {
 
 This example uses optional binding to try to access a planet with a raw value of `11`. The statement `if let somePlanet = Planet(rawValue: 11)` creates an optional `Planet`, and sets `somePlanet` to the value of that optional `Planet` if it can be retrieved. In this case, it isn’t possible to retrieve a planet with a position of `11`, and so the `else` branch is executed instead.
 
+### Recursive Enumerations
 
-
-## Recursive Enumerations
-
-A *recursive enumeration* is an enumeration that has another instance of the enumeration as the associated value for one or more of the enumeration cases. You indicate that an enumeration case is recursive by writing `indirect` before it, which tells the compiler to insert the necessary layer of indirection.
+A _recursive enumeration_ is an enumeration that has another instance of the enumeration as the associated value for one or more of the enumeration cases. You indicate that an enumeration case is recursive by writing `indirect` before it, which tells the compiler to insert the necessary layer of indirection.
 
 For example, here is an enumeration that stores simple arithmetic expressions:
 

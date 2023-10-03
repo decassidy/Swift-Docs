@@ -1,18 +1,16 @@
-[Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)
-
 # Control Flow
 
-### Structure code with branches, loops, and early exits.
+[Swift Language Guide - Table of Contents](./)
 
+## Control Flow
 
+#### Structure code with branches, loops, and early exits.
 
 Swift provides a variety of control flow statements. These include `while` loops to perform a task multiple times; `if`, `guard`, and `switch` statements to execute different branches of code based on certain conditions; and statements such as `break` and `continue` to transfer the flow of execution to another point in your code. Swift provides a `for`-`in` loop that makes it easy to iterate over arrays, dictionaries, ranges, strings, and other sequences. Swift also provides `defer` statements, which wrap code to be executed when leaving the current scope.
 
 Swift’s `switch` statement is considerably more powerful than its counterpart in many C-like languages. Cases can match many different patterns, including interval matches, tuples, and casts to a specific type. Matched values in a `switch` case can be bound to temporary constants or variables for use within the case’s body, and complex matching conditions can be expressed with a `where` clause for each case.
 
-
-
-## For-In Loops
+### For-In Loops
 
 You use the `for`-`in` loop to iterate over a sequence, such as items in an array, ranges of numbers, or characters in a string.
 
@@ -101,21 +99,16 @@ for tickMark in stride(from: 3, through: hours, by: hourInterval) {
 }
 ```
 
-The examples above use a `for`-`in` loop to iterate ranges, arrays, dictionaries, and strings. However, you can use this syntax to iterate *any* collection, including your own classes and collection types, as long as those types conform to the [`Sequence`](https://developer.apple.com/documentation/swift/sequence) protocol.
+The examples above use a `for`-`in` loop to iterate ranges, arrays, dictionaries, and strings. However, you can use this syntax to iterate _any_ collection, including your own classes and collection types, as long as those types conform to the [`Sequence`](https://developer.apple.com/documentation/swift/sequence) protocol.
 
-
-
-## While Loops
+### While Loops
 
 A `while` loop performs a set of statements until a condition becomes `false`. These kinds of loops are best used when the number of iterations isn’t known before the first iteration begins. Swift provides two kinds of `while` loops:
 
-- `while` evaluates its condition at the start of each pass through the loop.
+* `while` evaluates its condition at the start of each pass through the loop.
+* `repeat`-`while` evaluates its condition at the end of each pass through the loop.
 
-- `repeat`-`while` evaluates its condition at the end of each pass through the loop.
-
-  
-
-### While
+#### While
 
 A `while` loop starts by evaluating a single condition. If the condition is `true`, a set of statements is repeated until the condition becomes `false`.
 
@@ -127,17 +120,17 @@ while <#condition#> {
 }
 ```
 
-This example plays a simple game of *Snakes and Ladders* (also known as *Chutes and Ladders*):
+This example plays a simple game of _Snakes and Ladders_ (also known as _Chutes and Ladders_):
 
-<img src="https://docs.swift.org/swift-book/images/snakesAndLadders@2x.png" alt="img" style="zoom:67%;" />
+![img](https://docs.swift.org/swift-book/images/snakesAndLadders@2x.png)
 
 The rules of the game are as follows:
 
-- The board has 25 squares, and the aim is to land on or beyond square 25.
-- The player’s starting square is “square zero”, which is just off the bottom-left corner of the board.
-- Each turn, you roll a six-sided dice and move by that number of squares, following the horizontal path indicated by the dotted arrow above.
-- If your turn ends at the bottom of a ladder, you move up that ladder.
-- If your turn ends at the head of a snake, you move down that snake.
+* The board has 25 squares, and the aim is to land on or beyond square 25.
+* The player’s starting square is “square zero”, which is just off the bottom-left corner of the board.
+* Each turn, you roll a six-sided dice and move by that number of squares, following the horizontal path indicated by the dotted arrow above.
+* If your turn ends at the bottom of a ladder, you move up that ladder.
+* If your turn ends at the head of a snake, you move down that snake.
 
 The game board is represented by an array of `Int` values. Its size is based on a constant called `finalSquare`, which is used to initialize the array and also to check for a win condition later in the example. Because the players start off the board, on “square zero”, the board is initialized with 26 zero `Int` values, not 25.
 
@@ -184,11 +177,9 @@ The current `while` loop execution then ends, and the loop’s condition is chec
 
 A `while` loop is appropriate in this case, because the length of the game isn’t clear at the start of the `while` loop. Instead, the loop is executed until a particular condition is satisfied.
 
+#### Repeat-While
 
-
-### Repeat-While
-
-The other variation of the `while` loop, known as the `repeat`-`while` loop, performs a single pass through the loop block first, *before* considering the loop’s condition. It then continues to repeat the loop until the condition is `false`.
+The other variation of the `while` loop, known as the `repeat`-`while` loop, performs a single pass through the loop block first, _before_ considering the loop’s condition. It then continues to repeat the loop until the condition is `false`.
 
 > **Note**
 >
@@ -202,7 +193,7 @@ repeat {
 } while <#condition#>
 ```
 
-Here’s the *Snakes and Ladders* example again, written as a `repeat`-`while` loop rather than a `while` loop. The values of `finalSquare`, `board`, `square`, and `diceRoll` are initialized in exactly the same way as with a `while` loop.
+Here’s the _Snakes and Ladders_ example again, written as a `repeat`-`while` loop rather than a `while` loop. The values of `finalSquare`, `board`, `square`, and `diceRoll` are initialized in exactly the same way as with a `while` loop.
 
 ```swift
 let finalSquare = 25
@@ -213,7 +204,7 @@ var square = 0
 var diceRoll = 0
 ```
 
-In this version of the game, the *first* action in the loop is to check for a ladder or a snake. No ladder on the board takes the player straight to square 25, and so it isn’t possible to win the game by moving up a ladder. Therefore, it’s safe to check for a snake or a ladder as the first action in the loop.
+In this version of the game, the _first_ action in the loop is to check for a ladder or a snake. No ladder on the board takes the player straight to square 25, and so it isn’t possible to win the game by moving up a ladder. Therefore, it’s safe to check for a snake or a ladder as the first action in the loop.
 
 At the start of the game, the player is on “square zero”. `board[0]` always equals `0` and has no effect.
 
@@ -233,19 +224,15 @@ print("Game over!")
 
 After the code checks for snakes and ladders, the dice is rolled and the player is moved forward by `diceRoll` squares. The current loop execution then ends.
 
-The loop’s condition (`while square < finalSquare`) is the same as before, but this time it’s not evaluated until the *end* of the first run through the loop. The structure of the `repeat`-`while` loop is better suited to this game than the `while` loop in the previous example. In the `repeat`-`while` loop above, `square += board[square]` is always executed *immediately after* the loop’s `while` condition confirms that `square` is still on the board. This behavior removes the need for the array bounds check seen in the `while` loop version of the game described earlier.
+The loop’s condition (`while square < finalSquare`) is the same as before, but this time it’s not evaluated until the _end_ of the first run through the loop. The structure of the `repeat`-`while` loop is better suited to this game than the `while` loop in the previous example. In the `repeat`-`while` loop above, `square += board[square]` is always executed _immediately after_ the loop’s `while` condition confirms that `square` is still on the board. This behavior removes the need for the array bounds check seen in the `while` loop version of the game described earlier.
 
+### Conditional Statements
 
-
-## Conditional Statements
-
-It’s often useful to execute different pieces of code based on certain conditions. You might want to run an extra piece of code when an error occurs, or to display a message when a value becomes too high or too low. To do this, you make parts of your code *conditional*.
+It’s often useful to execute different pieces of code based on certain conditions. You might want to run an extra piece of code when an error occurs, or to display a message when a value becomes too high or too low. To do this, you make parts of your code _conditional_.
 
 Swift provides two ways to add conditional branches to your code: the `if` statement and the `switch` statement. Typically, you use the `if` statement to evaluate simple conditions with only a few possible outcomes. The `switch` statement is better suited to more complex conditions with multiple possible permutations and is useful in situations where pattern matching can help select an appropriate code branch to execute.
 
-
-
-### If
+#### If
 
 In its simplest form, the `if` statement has a single `if` condition. It executes a set of statements only if that condition is `true`.
 
@@ -259,7 +246,7 @@ if temperatureInFahrenheit <= 32 {
 
 The example above checks whether the temperature is less than or equal to 32 degrees Fahrenheit (the freezing point of water). If it is, a message is printed. Otherwise, no message is printed, and code execution continues after the `if` statement’s closing brace.
 
-The `if` statement can provide an alternative set of statements, known as an *else clause*, for situations when the `if` condition is `false`. These statements are indicated by the `else` keyword.
+The `if` statement can provide an alternative set of statements, known as an _else clause_, for situations when the `if` condition is `false`. These statements are indicated by the `else` keyword.
 
 ```swift
 temperatureInFahrenheit = 40
@@ -303,9 +290,7 @@ if temperatureInFahrenheit <= 32 {
 
 Because the temperature is neither too cold nor too warm to trigger the `if` or `else if` conditions, no message is printed.
 
-
-
-### Switch
+#### Switch
 
 A `switch` statement considers a value and compares it against several possible matching patterns. It then executes an appropriate block of code, based on the first pattern that matches successfully. A `switch` statement provides an alternative to the `if` statement for responding to multiple potential states.
 
@@ -323,11 +308,11 @@ default:
 }
 ```
 
-Every `switch` statement consists of multiple possible *cases*, each of which begins with the `case` keyword. In addition to comparing against specific values, Swift provides several ways for each case to specify more complex matching patterns. These options are described later in this chapter.
+Every `switch` statement consists of multiple possible _cases_, each of which begins with the `case` keyword. In addition to comparing against specific values, Swift provides several ways for each case to specify more complex matching patterns. These options are described later in this chapter.
 
-Like the body of an `if` statement, each `case` is a separate branch of code execution. The `switch` statement determines which branch should be selected. This procedure is known as *switching* on the value that’s being considered.
+Like the body of an `if` statement, each `case` is a separate branch of code execution. The `switch` statement determines which branch should be selected. This procedure is known as _switching_ on the value that’s being considered.
 
-Every `switch` statement must be *exhaustive*. That is, every possible value of the type being considered must be matched by one of the `switch` cases. If it’s not appropriate to provide a case for every possible value, you can define a default case to cover any values that aren’t addressed explicitly. This default case is indicated by the `default` keyword, and must always appear last.
+Every `switch` statement must be _exhaustive_. That is, every possible value of the type being considered must be matched by one of the `switch` cases. If it’s not appropriate to provide a case for every possible value, you can define a default case to cover any values that aren’t addressed explicitly. This default case is indicated by the `default` keyword, and must always appear last.
 
 This example uses a `switch` statement to consider a single lowercase character called `someCharacter`:
 
@@ -346,9 +331,7 @@ default:
 
 The `switch` statement’s first case matches the first letter of the English alphabet, `a`, and its second case matches the last letter, `z`. Because the `switch` must have a case for every possible character, not just every alphabetic character, this `switch` statement uses a `default` case to match all characters other than `a` and `z`. This provision ensures that the `switch` statement is exhaustive.
 
-
-
-#### No Implicit Fallthrough
+**No Implicit Fallthrough**
 
 In contrast with `switch` statements in C and Objective-C, `switch` statements in Swift don’t fall through the bottom of each case and into the next one by default. Instead, the entire `switch` statement finishes its execution as soon as the first matching `switch` case is completed, without requiring an explicit `break` statement. This makes the `switch` statement safer and easier to use than the one in C and avoids executing more than one `switch` case by mistake.
 
@@ -356,7 +339,7 @@ In contrast with `switch` statements in C and Objective-C, `switch` statements i
 >
 > Although `break` isn’t required in Swift, you can use a `break` statement to match and ignore a particular case or to break out of a matched case before that case has completed its execution. For details, see [Break in a Switch Statement](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/controlflow#Break-in-a-Switch-Statement).
 
-The body of each case *must* contain at least one executable statement. It isn’t valid to write the following code, because the first case is empty:
+The body of each case _must_ contain at least one executable statement. It isn’t valid to write the following code, because the first case is empty:
 
 ```swift
 let anotherCharacter: Character = "a"
@@ -391,9 +374,7 @@ For readability, a compound case can also be written over multiple lines. For mo
 >
 > To explicitly fall through at the end of a particular `switch` case, use the `fallthrough` keyword, as described in [Fallthrough](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/controlflow#Fallthrough).
 
-
-
-#### Interval Matching
+**Interval Matching**
 
 Values in `switch` cases can be checked for their inclusion in an interval. This example uses number intervals to provide a natural-language count for numbers of any size:
 
@@ -421,9 +402,7 @@ print("There are \(naturalCount) \(countedThings).")
 
 In the above example, `approximateCount` is evaluated in a `switch` statement. Each `case` compares that value to a number or interval. Because the value of `approximateCount` falls between 12 and 100, `naturalCount` is assigned the value `"dozens of"`, and execution is transferred out of the `switch` statement.
 
-
-
-#### Tuples
+**Tuples**
 
 You can use tuples to test multiple values in the same `switch` statement. Each element of the tuple can be tested against a different value or interval of values. Alternatively, use the underscore character (`_`), also known as the wildcard pattern, to match any possible value.
 
@@ -446,17 +425,15 @@ default:
 // Prints "(1, 1) is inside the box"
 ```
 
-<img src="https://docs.swift.org/swift-book/images/coordinateGraphSimple@2x.png" alt="img" style="zoom:50%;" />
+![img](https://docs.swift.org/swift-book/images/coordinateGraphSimple@2x.png)
 
 The `switch` statement determines whether the point is at the origin (0, 0), on the red x-axis, on the green y-axis, inside the blue 4-by-4 box centered on the origin, or outside of the box.
 
-Unlike C, Swift allows multiple `switch` cases to consider the same value or values. In fact, the point (0, 0) could match all *four* of the cases in this example. However, if multiple matches are possible, the first matching case is always used. The point (0, 0) would match `case (0, 0)` first, and so all other matching cases would be ignored.
+Unlike C, Swift allows multiple `switch` cases to consider the same value or values. In fact, the point (0, 0) could match all _four_ of the cases in this example. However, if multiple matches are possible, the first matching case is always used. The point (0, 0) would match `case (0, 0)` first, and so all other matching cases would be ignored.
 
+**Value Bindings**
 
-
-#### Value Bindings
-
-A `switch` case can name the value or values it matches to temporary constants or variables, for use in the body of the case. This behavior is known as *value binding*, because the values are bound to temporary constants or variables within the case’s body.
+A `switch` case can name the value or values it matches to temporary constants or variables, for use in the body of the case. This behavior is known as _value binding_, because the values are bound to temporary constants or variables within the case’s body.
 
 The example below takes an (x, y) point, expressed as a tuple of type `(Int, Int)`, and categorizes it on the graph that follows:
 
@@ -473,7 +450,7 @@ case let (x, y):
 // Prints "on the x-axis with an x value of 2"
 ```
 
-<img src="https://docs.swift.org/swift-book/images/coordinateGraphMedium@2x.png" alt="img" style="zoom: 25%;" />
+![img](https://docs.swift.org/swift-book/images/coordinateGraphMedium@2x.png)
 
 The `switch` statement determines whether the point is on the red x-axis, on the green y-axis, or elsewhere (on neither axis).
 
@@ -483,7 +460,7 @@ After the temporary constants are declared, they can be used within the case’s
 
 This `switch` statement doesn’t have a `default` case. The final case, `case let (x, y)`, declares a tuple of two placeholder constants that can match any value. Because `anotherPoint` is always a tuple of two values, this case matches all possible remaining values, and a `default` case isn’t needed to make the `switch` statement exhaustive.
 
-#### Where
+**Where**
 
 A `switch` case can use a `where` clause to check for additional conditions.
 
@@ -502,7 +479,7 @@ case let (x, y):
 // Prints "(1, -1) is on the line x == -y"
 ```
 
-<img src="https://docs.swift.org/swift-book/images/coordinateGraphComplex@2x.png" alt="img" style="zoom: 25%;" />
+![img](https://docs.swift.org/swift-book/images/coordinateGraphComplex@2x.png)
 
 The `switch` statement determines whether the point is on the green diagonal line where `x == y`, on the purple diagonal line where `x == -y`, or neither.
 
@@ -510,7 +487,7 @@ The three `switch` cases declare placeholder constants `x` and `y`, which tempor
 
 As in the previous example, the final case matches all possible remaining values, and so a `default` case isn’t needed to make the `switch` statement exhaustive.
 
-#### Compound Cases
+**Compound Cases**
 
 Multiple switch cases that share the same body can be combined by writing several patterns after `case`, with a comma between each of the patterns. If any of the patterns match, then the case is considered to match. The patterns can be written over multiple lines if the list is long. For example:
 
@@ -545,23 +522,19 @@ default:
 
 The `case` above has two patterns: `(let distance, 0)` matches points on the x-axis and `(0, let distance)` matches points on the y-axis. Both patterns include a binding for `distance` and `distance` is an integer in both patterns — which means that the code in the body of the `case` can always access a value for `distance`.
 
+### Control Transfer Statements
 
+_Control transfer statements_ change the order in which your code is executed, by transferring control from one piece of code to another. Swift has five control transfer statements:
 
-## Control Transfer Statements
-
-*Control transfer statements* change the order in which your code is executed, by transferring control from one piece of code to another. Swift has five control transfer statements:
-
-- `continue`
-- `break`
-- `fallthrough`
-- `return`
-- `throw`
+* `continue`
+* `break`
+* `fallthrough`
+* `return`
+* `throw`
 
 The `continue`, `break`, and `fallthrough` statements are described below. The `return` statement is described in [Functions](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/functions), and the `throw` statement is described in [Propagating Errors Using Throwing Functions](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/errorhandling#Propagating-Errors-Using-Throwing-Functions).
 
-
-
-### Continue
+#### Continue
 
 The `continue` statement tells a loop to stop what it’s doing and start again at the beginning of the next iteration through the loop. It says “I am done with the current loop iteration” without leaving the loop altogether.
 
@@ -583,17 +556,15 @@ print(puzzleOutput)
 
 The code above calls the `continue` keyword whenever it matches a vowel or a space, causing the current iteration of the loop to end immediately and to jump straight to the start of the next iteration.
 
-
-
-### Break
+#### Break
 
 The `break` statement ends execution of an entire control flow statement immediately. The `break` statement can be used inside a `switch` or loop statement when you want to terminate the execution of the `switch` or loop statement earlier than would otherwise be the case.
 
-#### Break in a Loop Statement
+**Break in a Loop Statement**
 
 When used inside a loop statement, `break` ends the loop’s execution immediately and transfers control to the code after the loop’s closing brace (`}`). No further code from the current iteration of the loop is executed, and no further iterations of the loop are started.
 
-#### Break in a Switch Statement
+**Break in a Switch Statement**
 
 When used inside a `switch` statement, `break` causes the `switch` statement to end its execution immediately and to transfer control to the code after the `switch` statement’s closing brace (`}`).
 
@@ -634,9 +605,7 @@ After the `switch` statement completes its execution, the example uses optional 
 
 Because it’s not practical to list every possible `Character` value in the example above, a `default` case handles any characters that aren’t matched. This `default` case doesn’t need to perform any action, and so it’s written with a single `break` statement as its body. As soon as the `default` case is matched, the `break` statement ends the `switch` statement’s execution, and code execution continues from the `if let` statement.
 
-
-
-### Fallthrough
+#### Fallthrough
 
 In Swift, `switch` statements don’t fall through the bottom of each case and into the next one. That is, the entire `switch` statement completes its execution as soon as the first matching case is completed. By contrast, C requires you to insert an explicit `break` statement at the end of every `switch` case to prevent fallthrough. Avoiding default fallthrough means that Swift `switch` statements are much more concise and predictable than their counterparts in C, and thus they avoid executing multiple `switch` cases by mistake.
 
@@ -666,13 +635,11 @@ After the `switch` statement has finished executing, the number’s description 
 >
 > The `fallthrough` keyword doesn’t check the case conditions for the `switch` case that it causes execution to fall into. The `fallthrough` keyword simply causes code execution to move directly to the statements inside the next case (or `default` case) block, as in C’s standard `switch` statement behavior.
 
-
-
-### Labeled Statements
+#### Labeled Statements
 
 In Swift, you can nest loops and conditional statements inside other loops and conditional statements to create complex control flow structures. However, loops and conditional statements can both use the `break` statement to end their execution prematurely. Therefore, it’s sometimes useful to be explicit about which loop or conditional statement you want a `break` statement to terminate. Similarly, if you have multiple nested loops, it can be useful to be explicit about which loop the `continue` statement should affect.
 
-To achieve these aims, you can mark a loop statement or conditional statement with a *statement label*. With a conditional statement, you can use a statement label with the `break` statement to end the execution of the labeled statement. With a loop statement, you can use a statement label with the `break` or `continue` statement to end or continue the execution of the labeled statement.
+To achieve these aims, you can mark a loop statement or conditional statement with a _statement label_. With a conditional statement, you can use a statement label with the `break` statement to end the execution of the labeled statement. With a loop statement, you can use a statement label with the `break` or `continue` statement to end or continue the execution of the labeled statement.
 
 A labeled statement is indicated by placing a label on the same line as the statement’s introducer keyword, followed by a colon. Here’s an example of this syntax for a `while` loop, although the principle is the same for all loops and `switch` statements:
 
@@ -682,15 +649,15 @@ A labeled statement is indicated by placing a label on the same line as the stat
 }
 ```
 
-The following example uses the `break` and `continue` statements with a labeled `while` loop for an adapted version of the *Snakes and Ladders* game that you saw earlier in this chapter. This time around, the game has an extra rule:
+The following example uses the `break` and `continue` statements with a labeled `while` loop for an adapted version of the _Snakes and Ladders_ game that you saw earlier in this chapter. This time around, the game has an extra rule:
 
-- To win, you must land *exactly* on square 25.
+* To win, you must land _exactly_ on square 25.
 
 If a particular dice roll would take you beyond square 25, you must roll again until you roll the exact number needed to land on square 25.
 
 The game board is the same as before.
 
-<img src="https://docs.swift.org/swift-book/images/snakesAndLadders@2x.png" alt="img" style="zoom:67%;" />
+![img](https://docs.swift.org/swift-book/images/snakesAndLadders@2x.png)
 
 The values of `finalSquare`, `board`, `square`, and `diceRoll` are initialized in the same way as before:
 
@@ -729,11 +696,9 @@ print("Game over!")
 
 The dice is rolled at the start of each loop. Rather than moving the player immediately, the loop uses a `switch` statement to consider the result of the move and to determine whether the move is allowed:
 
-- If the dice roll will move the player onto the final square, the game is over. The `break gameLoop` statement transfers control to the first line of code outside of the `while` loop, which ends the game.
-- If the dice roll will move the player *beyond* the final square, the move is invalid and the player needs to roll again. The `continue gameLoop` statement ends the current `while` loop iteration and begins the next iteration of the loop.
-- In all other cases, the dice roll is a valid move. The player moves forward by `diceRoll` squares, and the game logic checks for any snakes and ladders. The loop then ends, and control returns to the `while` condition to decide whether another turn is required.
-
-
+* If the dice roll will move the player onto the final square, the game is over. The `break gameLoop` statement transfers control to the first line of code outside of the `while` loop, which ends the game.
+* If the dice roll will move the player _beyond_ the final square, the move is invalid and the player needs to roll again. The `continue gameLoop` statement ends the current `while` loop iteration and begins the next iteration of the loop.
+* In all other cases, the dice roll is a valid move. The player moves forward by `diceRoll` squares, and the game logic checks for any snakes and ladders. The loop then ends, and control returns to the `while` condition to decide whether another turn is required.
 
 > **Note**
 >
@@ -741,9 +706,7 @@ The dice is rolled at the start of each loop. Rather than moving the player imme
 >
 > It isn’t strictly necessary to use the `gameLoop` label when calling `continue gameLoop` to jump to the next iteration of the loop. There’s only one loop in the game, and therefore no ambiguity as to which loop the `continue` statement will affect. However, there’s no harm in using the `gameLoop` label with the `continue` statement. Doing so is consistent with the label’s use alongside the `break` statement and helps make the game’s logic clearer to read and understand.
 
-
-
-## Early Exit
+### Early Exit
 
 A `guard` statement, like an `if` statement, executes statements depending on the Boolean value of an expression. You use a `guard` statement to require that a condition must be true in order for the code after the `guard` statement to be executed. Unlike an `if` statement, a `guard` statement always has an `else` clause — the code inside the `else` clause is executed if the condition isn’t true.
 
@@ -778,9 +741,9 @@ If that condition isn’t met, the code inside the `else` branch is executed. Th
 
 Using a `guard` statement for requirements improves the readability of your code, compared to doing the same check with an `if` statement. It lets you write the code that’s typically executed without wrapping it in an `else` block, and it lets you keep the code that handles a violated requirement next to the requirement.
 
-## Deferred Actions
+### Deferred Actions
 
-Unlike control-flow constructs like `if` and `while`, which let you control whether part of your code is executed or how many times it gets executed, `defer` controls *when* a piece of code is executed. You use a `defer` block to write code that will be executed later, when your program reaches the end of the current scope. For example:
+Unlike control-flow constructs like `if` and `while`, which let you control whether part of your code is executed or how many times it gets executed, `defer` controls _when_ a piece of code is executed. You use a `defer` block to write code that will be executed later, when your program reaches the end of the current scope. For example:
 
 ```swift
 var score = 1
@@ -828,15 +791,13 @@ if score < 10 {
 
 If your program stops running — for example, because of a runtime error or a crash — deferred code doesn’t execute. However, deferred code does execute after an error is thrown; for information about using `defer` with error handling, see [Specifying Cleanup Actions](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/errorhandling#Specifying-Cleanup-Actions).
 
-
-
-## Checking API Availability
+### Checking API Availability
 
 Swift has built-in support for checking API availability, which ensures that you don’t accidentally use APIs that are unavailable on a given deployment target.
 
 The compiler uses availability information in the SDK to verify that all of the APIs used in your code are available on the deployment target specified by your project. Swift reports an error at compile time if you try to use an API that isn’t available.
 
-You use an *availability condition* in an `if` or `guard` statement to conditionally execute a block of code, depending on whether the APIs you want to use are available at runtime. The compiler uses the information from the availability condition when it verifies that the APIs in that block of code are available.
+You use an _availability condition_ in an `if` or `guard` statement to conditionally execute a block of code, depending on whether the APIs you want to use are available at runtime. The compiler uses the information from the availability condition when it verifies that the APIs in that block of code are available.
 
 ```swift
 if #available(iOS 10, macOS 10.12, *) {

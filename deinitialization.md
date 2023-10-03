@@ -1,18 +1,16 @@
-[Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)
-
 # Deinitialization
 
-### Release resources that require custom cleanup.
+[Swift Language Guide - Table of Contents](./)
 
+## Deinitialization
 
+#### Release resources that require custom cleanup.
 
-A *deinitializer* is called immediately before a class instance is deallocated. You write deinitializers with the `deinit` keyword, similar to how initializers are written with the `init` keyword. Deinitializers are only available on class types.
+A _deinitializer_ is called immediately before a class instance is deallocated. You write deinitializers with the `deinit` keyword, similar to how initializers are written with the `init` keyword. Deinitializers are only available on class types.
 
+### How Deinitialization Works
 
-
-## How Deinitialization Works
-
-Swift automatically deallocates your instances when they’re no longer needed, to free up resources. Swift handles the memory management of instances through *automatic reference counting* (*ARC*), as described in [Automatic Reference Counting](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/automaticreferencecounting). Typically you don’t need to perform manual cleanup when your instances are deallocated. However, when you are working with your own resources, you might need to perform some additional cleanup yourself. For example, if you create a custom class to open a file and write some data to it, you might need to close the file before the class instance is deallocated.
+Swift automatically deallocates your instances when they’re no longer needed, to free up resources. Swift handles the memory management of instances through _automatic reference counting_ (_ARC_), as described in [Automatic Reference Counting](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/automaticreferencecounting). Typically you don’t need to perform manual cleanup when your instances are deallocated. However, when you are working with your own resources, you might need to perform some additional cleanup yourself. For example, if you create a custom class to open a file and write some data to it, you might need to close the file before the class instance is deallocated.
 
 Class definitions can have at most one deinitializer per class. The deinitializer doesn’t take any parameters and is written without parentheses:
 
@@ -26,9 +24,7 @@ Deinitializers are called automatically, just before instance deallocation takes
 
 Because an instance isn’t deallocated until after its deinitializer is called, a deinitializer can access all properties of the instance it’s called on and can modify its behavior based on those properties (such as looking up the name of a file that needs to be closed).
 
-
-
-## Deinitializers in Action
+### Deinitializers in Action
 
 Here’s an example of a deinitializer in action. This example defines two new types, `Bank` and `Player`, for a simple game. The `Bank` class manages a made-up currency, which can never have more than 10,000 coins in circulation. There can only ever be one `Bank` in the game, and so the `Bank` is implemented as a class with type properties and methods to store and manage its current state:
 

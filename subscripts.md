@@ -1,20 +1,18 @@
-[Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)
-
-[TOC]
-
 # Subscripts
 
-### Access the elements of a collection.
+[Swift Language Guide - Table of Contents](./)
 
+\[TOC]
 
+## Subscripts
 
-Classes, structures, and enumerations can define *subscripts*, which are shortcuts for accessing the member elements of a collection, list, or sequence. You use subscripts to set and retrieve values by index without needing separate methods for setting and retrieval. For example, you access elements in an `Array` instance as `someArray[index]` and elements in a `Dictionary` instance as `someDictionary[key]`.
+#### Access the elements of a collection.
+
+Classes, structures, and enumerations can define _subscripts_, which are shortcuts for accessing the member elements of a collection, list, or sequence. You use subscripts to set and retrieve values by index without needing separate methods for setting and retrieval. For example, you access elements in an `Array` instance as `someArray[index]` and elements in a `Dictionary` instance as `someDictionary[key]`.
 
 You can define multiple subscripts for a single type, and the appropriate subscript overload to use is selected based on the type of index value you pass to the subscript. Subscripts aren’t limited to a single dimension, and you can define subscripts with multiple input parameters to suit your custom type’s needs.
 
-
-
-## Subscript Syntax
+### Subscript Syntax
 
 Subscripts enable you to query instances of a type by writing one or more values in square brackets after the instance name. Their syntax is similar to both instance method syntax and computed property syntax. You write subscript definitions with the `subscript` keyword, and specify one or more input parameters and a return type, in the same way as instance methods. Unlike instance methods, subscripts can be read-write or read-only. This behavior is communicated by a getter and setter in the same way as for computed properties:
 
@@ -39,7 +37,7 @@ subscript(index: Int) -> Int {
 }
 ```
 
-Here’s an example of a read-only subscript implementation, which defines a `TimesTable` structure to represent an *n*-times-table of integers:
+Here’s an example of a read-only subscript implementation, which defines a `TimesTable` structure to represent an _n_-times-table of integers:
 
 ```Swift
 struct TimesTable {
@@ -57,13 +55,11 @@ In this example, a new instance of `TimesTable` is created to represent the thre
 
 You can query the `threeTimesTable` instance by calling its subscript, as shown in the call to `threeTimesTable[6]`. This requests the sixth entry in the three-times-table, which returns a value of `18`, or `3` times `6`.
 
->**Note**
+> **Note**
 >
->An *n*-times-table is based on a fixed mathematical rule. It isn’t appropriate to set `threeTimesTable[someIndex]` to a new value, and so the subscript for `TimesTable` is defined as a read-only subscript.
+> An _n_-times-table is based on a fixed mathematical rule. It isn’t appropriate to set `threeTimesTable[someIndex]` to a new value, and so the subscript for `TimesTable` is defined as a read-only subscript.
 
-
-
-## Subscript Usage
+### Subscript Usage
 
 The exact meaning of “subscript” depends on the context in which it’s used. Subscripts are typically used as a shortcut for accessing the member elements in a collection, list, or sequence. You are free to implement subscripts in the most appropriate way for your particular class or structure’s functionality.
 
@@ -78,19 +74,17 @@ The example above defines a variable called `numberOfLegs` and initializes it wi
 
 For more information about `Dictionary` subscripting, see [Accessing and Modifying a Dictionary](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/collectiontypes#Accessing-and-Modifying-a-Dictionary).
 
->**Note**
+> **Note**
 >
->Swift’s `Dictionary` type implements its key-value subscripting as a subscript that takes and returns an *optional* type. For the `numberOfLegs` dictionary above, the key-value subscript takes and returns a value of type `Int?`, or “optional int”. The `Dictionary` type uses an optional subscript type to model the fact that not every key will have a value, and to give a way to delete a value for a key by assigning a `nil` value for that key.
+> Swift’s `Dictionary` type implements its key-value subscripting as a subscript that takes and returns an _optional_ type. For the `numberOfLegs` dictionary above, the key-value subscript takes and returns a value of type `Int?`, or “optional int”. The `Dictionary` type uses an optional subscript type to model the fact that not every key will have a value, and to give a way to delete a value for a key by assigning a `nil` value for that key.
 
-
-
-## Subscript Options
+### Subscript Options
 
 Subscripts can take any number of input parameters, and these input parameters can be of any type. Subscripts can also return a value of any type.
 
 Like functions, subscripts can take a varying number of parameters and provide default values for their parameters, as discussed in [Variadic Parameters](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/functions#Variadic-Parameters) and [Default Parameter Values](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/functions#Default-Parameter-Values). However, unlike functions, subscripts can’t use in-out parameters.
 
-A class or structure can provide as many subscript implementations as it needs, and the appropriate subscript to be used will be inferred based on the types of the value or values that are contained within the subscript brackets at the point that the subscript is used. This definition of multiple subscripts is known as *subscript overloading*.
+A class or structure can provide as many subscript implementations as it needs, and the appropriate subscript to be used will be inferred based on the types of the value or values that are contained within the subscript brackets at the point that the subscript is used. This definition of multiple subscripts is known as _subscript overloading_.
 
 While it’s most common for a subscript to take a single parameter, you can also define a subscript with multiple parameters if it’s appropriate for your type. The following example defines a `Matrix` structure, which represents a two-dimensional matrix of `Double` values. The `Matrix` structure’s subscript takes two integer parameters:
 
@@ -129,7 +123,7 @@ var matrix = Matrix(rows: 2, columns: 2)
 
 The example above creates a new `Matrix` instance with two rows and two columns. The `grid` array for this `Matrix` instance is effectively a flattened version of the matrix, as read from top left to bottom right:
 
-<img src="https://docs.swift.org/swift-book/images/subscriptMatrix01~dark@2x.png" alt="img" style="zoom:50%;" />
+![img](https://docs.swift.org/swift-book/images/subscriptMatrix01\~dark@2x.png)
 
 Values in the matrix can be set by passing row and column values into the subscript, separated by a comma:
 
@@ -140,7 +134,7 @@ matrix[1, 0] = 3.2
 
 These two statements call the subscript’s setter to set a value of `1.5` in the top right position of the matrix (where `row` is `0` and `column` is `1`), and `3.2` in the bottom left position (where `row` is `1` and `column` is `0`):
 
-<img src="https://docs.swift.org/swift-book/images/subscriptMatrix02~dark@2x.png" alt="img" style="zoom:50%;" />
+![img](https://docs.swift.org/swift-book/images/subscriptMatrix02\~dark@2x.png)
 
 The `Matrix` subscript’s getter and setter both contain an assertion to check that the subscript’s `row` and `column` values are valid. To assist with these assertions, `Matrix` includes a convenience method called `indexIsValid(row:column:)`, which checks whether the requested `row` and `column` are inside the bounds of the matrix:
 
@@ -157,11 +151,9 @@ let someValue = matrix[2, 2]
 // This triggers an assert, because [2, 2] is outside of the matrix bounds.
 ```
 
+### Type Subscripts
 
-
-## Type Subscripts
-
-Instance subscripts, as described above, are subscripts that you call on an instance of a particular type. You can also define subscripts that are called on the type itself. This kind of subscript is called a *type subscript*. You indicate a type subscript by writing the `static` keyword before the `subscript` keyword. Classes can use the `class` keyword instead, to allow subclasses to override the superclass’s implementation of that subscript. The example below shows how you define and call a type subscript:
+Instance subscripts, as described above, are subscripts that you call on an instance of a particular type. You can also define subscripts that are called on the type itself. This kind of subscript is called a _type subscript_. You indicate a type subscript by writing the `static` keyword before the `subscript` keyword. Classes can use the `class` keyword instead, to allow subclasses to override the superclass’s implementation of that subscript. The example below shows how you define and call a type subscript:
 
 ```Swift
 enum Planet: Int {
@@ -173,7 +165,5 @@ enum Planet: Int {
 let mars = Planet[4]
 print(mars)
 ```
-
-
 
 [Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)

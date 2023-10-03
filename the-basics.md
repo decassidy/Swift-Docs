@@ -1,6 +1,6 @@
 # The Basics
 
-[Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)
+[Swift Language Guide - Table of Contents](./)
 
 ## The Basics
 

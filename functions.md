@@ -1,26 +1,24 @@
-[Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)
-
-[TOC]
-
 # Functions
 
-### Define and call functions, label their arguments, and use their return values.
+[Swift Language Guide - Table of Contents](./)
 
+\[TOC]
 
+## Functions
 
-*Functions* are self-contained chunks of code that perform a specific task. You give a function a name that identifies what it does, and this name is used to “call” the function to perform its task when needed.
+#### Define and call functions, label their arguments, and use their return values.
+
+_Functions_ are self-contained chunks of code that perform a specific task. You give a function a name that identifies what it does, and this name is used to “call” the function to perform its task when needed.
 
 Swift’s unified function syntax is flexible enough to express anything from a simple C-style function with no parameter names to a complex Objective-C-style method with names and argument labels for each parameter. Parameters can provide default values to simplify function calls and can be passed as in-out parameters, which modify a passed variable once the function has completed its execution.
 
 Every function in Swift has a type, consisting of the function’s parameter types and return type. You can use this type like any other type in Swift, which makes it easy to pass functions as parameters to other functions, and to return functions from functions. Functions can also be written within other functions to encapsulate useful functionality within a nested function scope.
 
+### Defining and Calling Functions
 
+When you define a function, you can optionally define one or more named, typed values that the function takes as input, known as _parameters_. You can also optionally define a type of value that the function will pass back as output when it’s done, known as its _return type_.
 
-## Defining and Calling Functions
-
-When you define a function, you can optionally define one or more named, typed values that the function takes as input, known as *parameters*. You can also optionally define a type of value that the function will pass back as output when it’s done, known as its *return type*.
-
-Every function has a *function name*, which describes the task that the function performs. To use a function, you “call” that function with its name and pass it input values (known as *arguments*) that match the types of the function’s parameters. A function’s arguments must always be provided in the same order as the function’s parameter list.
+Every function has a _function name_, which describes the task that the function performs. To use a function, you “call” that function with its name and pass it input values (known as _arguments_) that match the types of the function’s parameters. A function’s arguments must always be provided in the same order as the function’s parameter list.
 
 The function in the example below is called `greet(person:)`, because that’s what it does — it takes a person’s name as input and returns a greeting for that person. To accomplish this, you define one input parameter — a `String` value called `person` — and a return type of `String`, which will contain a greeting for that person:
 
@@ -31,7 +29,7 @@ func greet(person: String) -> String {
 }
 ```
 
-All of this information is rolled up into the function’s *definition*, which is prefixed with the `func` keyword. You indicate the function’s return type with the *return arrow* `->` (a hyphen followed by a right angle bracket), which is followed by the name of the type to return.
+All of this information is rolled up into the function’s _definition_, which is prefixed with the `func` keyword. You indicate the function’s return type with the _return arrow_ `->` (a hyphen followed by a right angle bracket), which is followed by the name of the type to return.
 
 The definition describes what the function does, what it expects to receive, and what it returns when it’s done. The definition makes it easy for the function to be called unambiguously from elsewhere in your code:
 
@@ -44,9 +42,9 @@ print(greet(person: "Brian"))
 
 You call the `greet(person:)` function by passing it a `String` value after the `person` argument label, such as `greet(person: "Anna")`. Because the function returns a `String` value, `greet(person:)` can be wrapped in a call to the `print(_:separator:terminator:)` function to print that string and see its return value, as shown above.
 
->**Note**
+> **Note**
 >
->The `print(_:separator:terminator:)` function doesn’t have a label for its first argument, and its other arguments are optional because they have a default value. These variations on function syntax are discussed below in [Function Argument Labels and Parameter Names](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/functions#Function-Argument-Labels-and-Parameter-Names) and [Default Parameter Values](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/functions#Default-Parameter-Values).
+> The `print(_:separator:terminator:)` function doesn’t have a label for its first argument, and its other arguments are optional because they have a default value. These variations on function syntax are discussed below in [Function Argument Labels and Parameter Names](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/functions#Function-Argument-Labels-and-Parameter-Names) and [Default Parameter Values](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/functions#Default-Parameter-Values).
 
 The body of the `greet(person:)` function starts by defining a new `String` constant called `greeting` and setting it to a simple greeting message. This greeting is then passed back out of the function using the `return` keyword. In the line of code that says `return greeting`, the function finishes its execution and returns the current value of `greeting`.
 
@@ -62,15 +60,11 @@ print(greetAgain(person: "Anna"))
 // Prints "Hello again, Anna!"
 ```
 
-
-
-## Function Parameters and Return Values
+### Function Parameters and Return Values
 
 Function parameters and return values are extremely flexible in Swift. You can define anything from a simple utility function with a single unnamed parameter to a complex function with expressive parameter names and different parameter options.
 
-
-
-### Functions Without Parameters
+#### Functions Without Parameters
 
 Functions aren’t required to define input parameters. Here’s a function with no input parameters, which always returns the same `String` message whenever it’s called:
 
@@ -84,9 +78,7 @@ print(sayHelloWorld())
 
 The function definition still needs parentheses after the function’s name, even though it doesn’t take any parameters. The function name is also followed by an empty pair of parentheses when the function is called.
 
-
-
-### Functions With Multiple Parameters
+#### Functions With Multiple Parameters
 
 Functions can have multiple input parameters, which are written within the function’s parentheses, separated by commas.
 
@@ -106,9 +98,7 @@ print(greet(person: "Tim", alreadyGreeted: true))
 
 You call the `greet(person:alreadyGreeted:)` function by passing it both a `String` argument value labeled `person` and a `Bool` argument value labeled `alreadyGreeted` in parentheses, separated by commas. Note that this function is distinct from the `greet(person:)` function shown in an earlier section. Although both functions have names that begin with `greet`, the `greet(person:alreadyGreeted:)` function takes two arguments but the `greet(person:)` function takes only one.
 
-
-
-### Functions Without Return Values
+#### Functions Without Return Values
 
 Functions aren’t required to define a return type. Here’s a version of the `greet(person:)` function, which prints its own `String` value rather than returning it:
 
@@ -122,9 +112,9 @@ greet(person: "Dave")
 
 Because it doesn’t need to return a value, the function’s definition doesn’t include the return arrow (`->`) or a return type.
 
->**Note**
+> **Note**
 >
->Strictly speaking, this version of the `greet(person:)` function *does* still return a value, even though no return value is defined. Functions without a defined return type return a special value of type `Void`. This is simply an empty tuple, which is written as `()`.
+> Strictly speaking, this version of the `greet(person:)` function _does_ still return a value, even though no return value is defined. Functions without a defined return type return a special value of type `Void`. This is simply an empty tuple, which is written as `()`.
 
 The return value of a function can be ignored when it’s called:
 
@@ -144,13 +134,11 @@ printWithoutCounting(string: "hello, world")
 
 The first function, `printAndCount(string:)`, prints a string, and then returns its character count as an `Int`. The second function, `printWithoutCounting(string:)`, calls the first function, but ignores its return value. When the second function is called, the message is still printed by the first function, but the returned value isn’t used.
 
->**Note**
+> **Note**
 >
->Return values can be ignored, but a function that says it will return a value must always do so. A function with a defined return type can’t allow control to fall out of the bottom of the function without returning a value, and attempting to do so will result in a compile-time error.
+> Return values can be ignored, but a function that says it will return a value must always do so. A function with a defined return type can’t allow control to fall out of the bottom of the function without returning a value, and attempting to do so will result in a compile-time error.
 
-
-
-### Functions with Multiple Return Values
+#### Functions with Multiple Return Values
 
 You can use a tuple type as the return type for a function to return multiple values as part of one compound return value.
 
@@ -183,15 +171,13 @@ print("min is \(bounds.min) and max is \(bounds.max)")
 // Prints "min is -6 and max is 109"
 ```
 
+**Optional Tuple Return Types**
 
+If the tuple type to be returned from a function has the potential to have “no value” for the entire tuple, you can use an _optional_ tuple return type to reflect the fact that the entire tuple can be `nil`. You write an optional tuple return type by placing a question mark after the tuple type’s closing parenthesis, such as `(Int, Int)?` or `(String, Int, Bool)?`.
 
-#### Optional Tuple Return Types
-
-If the tuple type to be returned from a function has the potential to have “no value” for the entire tuple, you can use an *optional* tuple return type to reflect the fact that the entire tuple can be `nil`. You write an optional tuple return type by placing a question mark after the tuple type’s closing parenthesis, such as `(Int, Int)?` or `(String, Int, Bool)?`.
-
->**Note**
+> **Note**
 >
->An optional tuple type such as `(Int, Int)?` is different from a tuple that contains optional types such as `(Int?, Int?)`. With an optional tuple type, the entire tuple is optional, not just each individual value within the tuple.
+> An optional tuple type such as `(Int, Int)?` is different from a tuple that contains optional types such as `(Int?, Int?)`. With an optional tuple type, the entire tuple is optional, not just each individual value within the tuple.
 
 The `minMax(array:)` function above returns a tuple containing two `Int` values. However, the function doesn’t perform any safety checks on the array it’s passed. If the `array` argument contains an empty array, the `minMax(array:)` function, as defined above, will trigger a runtime error when attempting to access `array[0]`.
 
@@ -222,9 +208,7 @@ if let bounds = minMax(array: [8, -6, 2, 109, 3, 71]) {
 // Prints "min is -6 and max is 109"
 ```
 
-
-
-### Functions With an Implicit Return
+#### Functions With an Implicit Return
 
 If the entire body of the function is a single expression, the function implicitly returns that expression. For example, both functions below have the same behavior:
 
@@ -246,15 +230,13 @@ The entire definition of the `greeting(for:)` function is the greeting message t
 
 As you’ll see in [Shorthand Getter Declaration](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/properties#Shorthand-Getter-Declaration), property getters can also use an implicit return.
 
->**Note**
+> **Note**
 >
->The code you write as an implicit return value needs to return some value. For example, you can’t use `print(13)` as an implicit return value. However, you can use a function that never returns like `fatalError("Oh no!")` as an implicit return value, because Swift knows that the implicit return doesn’t happen.
+> The code you write as an implicit return value needs to return some value. For example, you can’t use `print(13)` as an implicit return value. However, you can use a function that never returns like `fatalError("Oh no!")` as an implicit return value, because Swift knows that the implicit return doesn’t happen.
 
+### Function Argument Labels and Parameter Names
 
-
-## Function Argument Labels and Parameter Names
-
-Each function parameter has both an *argument label* and a *parameter name*. The argument label is used when calling the function; each argument is written in the function call with its argument label before it. The parameter name is used in the implementation of the function. By default, parameters use their parameter name as their argument label.
+Each function parameter has both an _argument label_ and a _parameter name_. The argument label is used when calling the function; each argument is written in the function call with its argument label before it. The parameter name is used in the implementation of the function. By default, parameters use their parameter name as their argument label.
 
 ```Swift
 func someFunction(firstParameterName: Int, secondParameterName: Int) {
@@ -266,9 +248,7 @@ someFunction(firstParameterName: 1, secondParameterName: 2)
 
 All parameters must have unique names. Although it’s possible for multiple parameters to have the same argument label, unique argument labels help make your code more readable.
 
-
-
-### Specifying Argument Labels
+#### Specifying Argument Labels
 
 You write an argument label before the parameter name, separated by a space:
 
@@ -291,9 +271,7 @@ print(greet(person: "Steve", from: "Cupertino"))
 
 The use of argument labels can allow a function to be called in an expressive, sentence-like manner, while still providing a function body that’s readable and clear in intent.
 
-
-
-### Omitting Argument Labels
+#### Omitting Argument Labels
 
 If you don’t want an argument label for a parameter, write an underscore (`_`) instead of an explicit argument label for that parameter.
 
@@ -305,13 +283,11 @@ func someFunction(_ firstParameterName: Int, secondParameterName: Int) {
 someFunction(1, secondParameterName: 2)
 ```
 
-If a parameter has an argument label, the argument *must* be labeled when you call the function.
+If a parameter has an argument label, the argument _must_ be labeled when you call the function.
 
+#### Default Parameter Values
 
-
-### Default Parameter Values
-
-You can define a *default value* for any parameter in a function by assigning a value to the parameter after that parameter’s type. If a default value is defined, you can omit that parameter when calling the function.
+You can define a _default value_ for any parameter in a function by assigning a value to the parameter after that parameter’s type. If a default value is defined, you can omit that parameter when calling the function.
 
 ```Swift
 func someFunction(parameterWithoutDefault: Int, parameterWithDefault: Int = 12) {
@@ -324,15 +300,13 @@ someFunction(parameterWithoutDefault: 4) // parameterWithDefault is 12
 
 Place parameters that don’t have default values at the beginning of a function’s parameter list, before the parameters that have default values. Parameters that don’t have default values are usually more important to the function’s meaning — writing them first makes it easier to recognize that the same function is being called, regardless of whether any default parameters are omitted.
 
+#### Variadic Parameters
 
-
-### Variadic Parameters
-
-A *variadic parameter* accepts zero or more values of a specified type. You use a variadic parameter to specify that the parameter can be passed a varying number of input values when the function is called. Write variadic parameters by inserting three period characters (`...`) after the parameter’s type name.
+A _variadic parameter_ accepts zero or more values of a specified type. You use a variadic parameter to specify that the parameter can be passed a varying number of input values when the function is called. Write variadic parameters by inserting three period characters (`...`) after the parameter’s type name.
 
 The values passed to a variadic parameter are made available within the function’s body as an array of the appropriate type. For example, a variadic parameter with a name of `numbers` and a type of `Double...` is made available within the function’s body as a constant array called `numbers` of type `[Double]`.
 
-The example below calculates the *arithmetic mean* (also known as the *average*) for a list of numbers of any length:
+The example below calculates the _arithmetic mean_ (also known as the _average_) for a list of numbers of any length:
 
 ```Swift
 func arithmeticMean(_ numbers: Double...) -> Double {
@@ -350,19 +324,17 @@ arithmeticMean(3, 8.25, 18.75)
 
 A function can have multiple variadic parameters. The first parameter that comes after a variadic parameter must have an argument label. The argument label makes it unambiguous which arguments are passed to the variadic parameter and which arguments are passed to the parameters that come after the variadic parameter.
 
+#### In-Out Parameters
 
+Function parameters are constants by default. Trying to change the value of a function parameter from within the body of that function results in a compile-time error. This means that you can’t change the value of a parameter by mistake. If you want a function to modify a parameter’s value, and you want those changes to persist after the function call has ended, define that parameter as an _in-out parameter_ instead.
 
-### In-Out Parameters
-
-Function parameters are constants by default. Trying to change the value of a function parameter from within the body of that function results in a compile-time error. This means that you can’t change the value of a parameter by mistake. If you want a function to modify a parameter’s value, and you want those changes to persist after the function call has ended, define that parameter as an *in-out parameter* instead.
-
-You write an in-out parameter by placing the `inout` keyword right before a parameter’s type. An in-out parameter has a value that’s passed *in* to the function, is modified by the function, and is passed back *out* of the function to replace the original value. For a detailed discussion of the behavior of in-out parameters and associated compiler optimizations, see [In-Out Parameters](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/declarations#In-Out-Parameters).
+You write an in-out parameter by placing the `inout` keyword right before a parameter’s type. An in-out parameter has a value that’s passed _in_ to the function, is modified by the function, and is passed back _out_ of the function to replace the original value. For a detailed discussion of the behavior of in-out parameters and associated compiler optimizations, see [In-Out Parameters](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/declarations#In-Out-Parameters).
 
 You can only pass a variable as the argument for an in-out parameter. You can’t pass a constant or a literal value as the argument, because constants and literals can’t be modified. You place an ampersand (`&`) directly before a variable’s name when you pass it as an argument to an in-out parameter, to indicate that it can be modified by the function.
 
->**Note**
+> **Note**
 >
->In-out parameters can’t have default values, and variadic parameters can’t be marked as `inout`.
+> In-out parameters can’t have default values, and variadic parameters can’t be marked as `inout`.
 
 Here’s an example of a function called `swapTwoInts(_:_:)`, which has two in-out integer parameters called `a` and `b`:
 
@@ -388,15 +360,13 @@ print("someInt is now \(someInt), and anotherInt is now \(anotherInt)")
 
 The example above shows that the original values of `someInt` and `anotherInt` are modified by the `swapTwoInts(_:_:)` function, even though they were originally defined outside of the function.
 
->**Note**
+> **Note**
 >
->In-out parameters aren’t the same as returning a value from a function. The `swapTwoInts` example above doesn’t define a return type or return a value, but it still modifies the values of `someInt` and `anotherInt`. In-out parameters are an alternative way for a function to have an effect outside of the scope of its function body.
+> In-out parameters aren’t the same as returning a value from a function. The `swapTwoInts` example above doesn’t define a return type or return a value, but it still modifies the values of `someInt` and `anotherInt`. In-out parameters are an alternative way for a function to have an effect outside of the scope of its function body.
 
+### Function Types
 
-
-## Function Types
-
-Every function has a specific *function type*, made up of the parameter types and the return type of the function.
+Every function has a specific _function type_, made up of the parameter types and the return type of the function.
 
 For example:
 
@@ -425,9 +395,7 @@ func printHelloWorld() {
 
 The type of this function is `() -> Void`, or “a function that has no parameters, and returns `Void`.”
 
-
-
-### Using Function Types
+#### Using Function Types
 
 You use function types just like any other types in Swift. For example, you can define a constant or variable to be of a function type and assign an appropriate function to that variable:
 
@@ -463,9 +431,7 @@ let anotherMathFunction = addTwoInts
 // anotherMathFunction is inferred to be of type (Int, Int) -> Int
 ```
 
-
-
-### Function Types as Parameter Types
+#### Function Types as Parameter Types
 
 You can use a function type such as `(Int, Int) -> Int` as a parameter type for another function. This enables you to leave some aspects of a function’s implementation for the function’s caller to provide when the function is called.
 
@@ -485,9 +451,7 @@ When `printMathResult(_:_:_:)` is called, it’s passed the `addTwoInts(_:_:)` f
 
 The role of `printMathResult(_:_:_:)` is to print the result of a call to a math function of an appropriate type. It doesn’t matter what that function’s implementation actually does — it matters only that the function is of the correct type. This enables `printMathResult(_:_:_:)` to hand off some of its functionality to the caller of the function in a type-safe way.
 
-
-
-### Function Types as Return Types
+#### Function Types as Return Types
 
 You can use a function type as the return type of another function. You do this by writing a complete function type immediately after the return arrow (`->`) of the returning function.
 
@@ -536,11 +500,9 @@ print("zero!")
 // zero!
 ```
 
+### Nested Functions
 
-
-## Nested Functions
-
-All of the functions you have encountered so far in this chapter have been examples of *global functions*, which are defined at a global scope. You can also define functions inside the bodies of other functions, known as *nested functions*.
+All of the functions you have encountered so far in this chapter have been examples of _global functions_, which are defined at a global scope. You can also define functions inside the bodies of other functions, known as _nested functions_.
 
 Nested functions are hidden from the outside world by default, but can still be called and used by their enclosing function. An enclosing function can also return one of its nested functions to allow the nested function to be used in another scope.
 
@@ -566,7 +528,5 @@ print("zero!")
 // -1...
 // zero!
 ```
-
-
 
 [Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)

@@ -1,34 +1,32 @@
-[Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)
-
 # Collection Types
 
-### Organize data using arrays, sets, and dictionaries.
+[Swift Language Guide - Table of Contents](./)
 
-Swift provides three primary *collection types*, known as arrays, sets, and dictionaries, for storing collections of values. Arrays are ordered collections of values. Sets are unordered collections of unique values. Dictionaries are unordered collections of key-value associations.
+## Collection Types
 
-<img src="https://docs.swift.org/swift-book/images/CollectionTypes_intro~dark@2x.png" alt="img" style="zoom:50%;" />
+#### Organize data using arrays, sets, and dictionaries.
+
+Swift provides three primary _collection types_, known as arrays, sets, and dictionaries, for storing collections of values. Arrays are ordered collections of values. Sets are unordered collections of unique values. Dictionaries are unordered collections of key-value associations.
+
+![img](https://docs.swift.org/swift-book/images/CollectionTypes\_intro\~dark@2x.png)
 
 Arrays, sets, and dictionaries in Swift are always clear about the types of values and keys that they can store. This means that you can’t insert a value of the wrong type into a collection by mistake. It also means you can be confident about the type of values you will retrieve from a collection.
 
 > **Note**
 >
-> Swift’s array, set, and dictionary types are implemented as *generic collections*. For more about generic types and collections, see [Generics](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/generics).
+> Swift’s array, set, and dictionary types are implemented as _generic collections_. For more about generic types and collections, see [Generics](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/generics).
 
+### Mutability of Collections
 
-
-## Mutability of Collections 
-
-If you create an array, a set, or a dictionary, and assign it to a variable, the collection that’s created will be *mutable*. This means that you can change (or *mutate*) the collection after it’s created by adding, removing, or changing items in the collection. If you assign an array, a set, or a dictionary to a constant, that collection is *immutable*, and its size and contents can’t be changed.
+If you create an array, a set, or a dictionary, and assign it to a variable, the collection that’s created will be _mutable_. This means that you can change (or _mutate_) the collection after it’s created by adding, removing, or changing items in the collection. If you assign an array, a set, or a dictionary to a constant, that collection is _immutable_, and its size and contents can’t be changed.
 
 > **Note**
 >
 > It’s good practice to create immutable collections in all cases where the collection doesn’t need to change. Doing so makes it easier for you to reason about your code and enables the Swift compiler to optimize the performance of the collections you create.
 
+### Arrays
 
-
-## Arrays 
-
-An *array* stores values of the same type in an ordered list. The same value can appear in an array multiple times at different positions.
+An _array_ stores values of the same type in an ordered list. The same value can appear in an array multiple times at different positions.
 
 > **Note**
 >
@@ -36,15 +34,11 @@ An *array* stores values of the same type in an ordered list. The same value can
 
 For more information about using `Array` with Foundation and Cocoa, see [Bridging Between Array and NSArray](https://developer.apple.com/documentation/swift/array#2846730).
 
-
-
-### Array Type Shorthand Syntax 
+#### Array Type Shorthand Syntax
 
 The type of a Swift array is written in full as `Array<Element>`, where `Element` is the type of values the array is allowed to store. You can also write the type of an array in shorthand form as `[Element]`. Although the two forms are functionally identical, the shorthand form is preferred and is used throughout this guide when referring to the type of an array.
 
-
-
-### Creating an Empty Array 
+#### Creating an Empty Array
 
 You can create an empty array of a certain type using initializer syntax:
 
@@ -65,9 +59,7 @@ someInts = []
 // someInts is now an empty array, but is still of type [Int]
 ```
 
-
-
-### Creating an Array with a Default Value 
+#### Creating an Array with a Default Value
 
 Swift’s `Array` type also provides an initializer for creating an array of a certain size with all of its values set to the same default value. You pass this initializer a default value of the appropriate type (called `repeating`): and the number of times that value is repeated in the new array (called `count`):
 
@@ -76,9 +68,7 @@ var threeDoubles = Array(repeating: 0.0, count: 3)
 // threeDoubles is of type [Double], and equals [0.0, 0.0, 0.0]
 ```
 
-
-
-### Creating an Array by Adding Two Arrays Together 
+#### Creating an Array by Adding Two Arrays Together
 
 You can create a new array by adding together two existing arrays with compatible types with the addition operator (`+`). The new array’s type is inferred from the type of the two arrays you add together:
 
@@ -90,11 +80,9 @@ var sixDoubles = threeDoubles + anotherThreeDoubles
 // sixDoubles is inferred as [Double], and equals [0.0, 0.0, 0.0, 2.5, 2.5, 2.5]
 ```
 
+#### Creating an Array with an Array Literal
 
-
-### Creating an Array with an Array Literal 
-
-You can also initialize an array with an *array literal*, which is a shorthand way to write one or more values as an array collection. An array literal is written as a list of values, separated by commas, surrounded by a pair of square brackets:
+You can also initialize an array with an _array literal_, which is a shorthand way to write one or more values as an array collection. An array literal is written as a list of values, separated by commas, surrounded by a pair of square brackets:
 
 ```swift
 [<#value 1#>, <#value 2#>, <#value 3#>]
@@ -123,9 +111,7 @@ var shoppingList = ["Eggs", "Milk"]
 
 Because all values in the array literal are of the same type, Swift can infer that `[String]` is the correct type to use for the `shoppingList` variable.
 
-
-
-### Accessing and Modifying an Array 
+#### Accessing and Modifying an Array
 
 You access and modify an array through its methods and properties, or by using subscript syntax.
 
@@ -163,7 +149,7 @@ shoppingList += ["Chocolate Spread", "Cheese", "Butter"]
 // shoppingList now contains 7 items
 ```
 
-Retrieve a value from the array by using *subscript syntax*, passing the index of the value you want to retrieve within square brackets immediately after the name of the array:
+Retrieve a value from the array by using _subscript syntax_, passing the index of the value you want to retrieve within square brackets immediately after the name of the array:
 
 ```swift
 var firstItem = shoppingList[0]
@@ -229,9 +215,7 @@ let apples = shoppingList.removeLast()
 // the apples constant is now equal to the removed "Apples" string
 ```
 
-
-
-### Iterating Over an Array 
+#### Iterating Over an Array
 
 You can iterate over the entire set of values in an array with the `for`-`in` loop:
 
@@ -261,11 +245,9 @@ for (index, value) in shoppingList.enumerated() {
 
 For more about the `for`-`in` loop, see [For-In Loops](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/controlflow#For-In-Loops).
 
+### Sets
 
-
-## Sets 
-
-A *set* stores distinct values of the same type in a collection with no defined ordering. You can use a set instead of an array when the order of items isn’t important, or when you need to ensure that an item only appears once.
+A _set_ stores distinct values of the same type in a collection with no defined ordering. You can use a set instead of an array when the order of items isn’t important, or when you need to ensure that an item only appears once.
 
 > **Note**
 >
@@ -273,11 +255,9 @@ A *set* stores distinct values of the same type in a collection with no defined 
 >
 > For more information about using `Set` with Foundation and Cocoa, see [Bridging Between Set and NSSet](https://developer.apple.com/documentation/swift/set#2845530).
 
+#### Hash Values for Set Types
 
-
-### Hash Values for Set Types 
-
-A type must be *hashable* in order to be stored in a set — that is, the type must provide a way to compute a *hash value* for itself. A hash value is an `Int` value that’s the same for all objects that compare equally, such that if `a == b`, the hash value of `a` is equal to the hash value of `b`.
+A type must be _hashable_ in order to be stored in a set — that is, the type must provide a way to compute a _hash value_ for itself. A hash value is an `Int` value that’s the same for all objects that compare equally, such that if `a == b`, the hash value of `a` is equal to the hash value of `b`.
 
 All of Swift’s basic types (such as `String`, `Int`, `Double`, and `Bool`) are hashable by default, and can be used as set value types or dictionary key types. Enumeration case values without associated values (as described in [Enumerations](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/enumerations)) are also hashable by default.
 
@@ -285,15 +265,11 @@ All of Swift’s basic types (such as `String`, `Int`, `Double`, and `Bool`) are
 >
 > You can use your own custom types as set value types or dictionary key types by making them conform to the `Hashable` protocol from the Swift standard library. For information about implementing the required `hash(into:)` method, see [`Hashable`](https://developer.apple.com/documentation/swift/hashable). For information about conforming to protocols, see [Protocols](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/protocols).
 
-
-
-### Set Type Syntax 
+#### Set Type Syntax
 
 The type of a Swift set is written as `Set<Element>`, where `Element` is the type that the set is allowed to store. Unlike arrays, sets don’t have an equivalent shorthand form.
 
-
-
-### Creating and Initializing an Empty Set 
+#### Creating and Initializing an Empty Set
 
 You can create an empty set of a certain type using initializer syntax:
 
@@ -316,9 +292,7 @@ letters = []
 // letters is now an empty set, but is still of type Set<Character>
 ```
 
-
-
-### Creating a Set with an Array Literal 
+#### Creating a Set with an Array Literal
 
 You can also initialize a set with an array literal, as a shorthand way to write one or more values as a set collection.
 
@@ -329,7 +303,7 @@ var favoriteGenres: Set<String> = ["Rock", "Classical", "Hip hop"]
 // favoriteGenres has been initialized with three initial items
 ```
 
-The `favoriteGenres` variable is declared as “a set of `String` values”, written as `Set<String>`. Because this particular set has specified a value type of `String`, it’s *only* allowed to store `String` values. Here, the `favoriteGenres` set is initialized with three `String` values (`"Rock"`, `"Classical"`, and `"Hip hop"`), written within an array literal.
+The `favoriteGenres` variable is declared as “a set of `String` values”, written as `Set<String>`. Because this particular set has specified a value type of `String`, it’s _only_ allowed to store `String` values. Here, the `favoriteGenres` set is initialized with three `String` values (`"Rock"`, `"Classical"`, and `"Hip hop"`), written within an array literal.
 
 > **Note**
 >
@@ -343,9 +317,7 @@ var favoriteGenres: Set = ["Rock", "Classical", "Hip hop"]
 
 Because all values in the array literal are of the same type, Swift can infer that `Set<String>` is the correct type to use for the `favoriteGenres` variable.
 
-
-
-### Accessing and Modifying a Set 
+#### Accessing and Modifying a Set
 
 You access and modify a set through its methods and properties.
 
@@ -396,9 +368,7 @@ if favoriteGenres.contains("Funk") {
 // Prints "It's too funky in here."
 ```
 
-
-
-### Iterating Over a Set 
+#### Iterating Over a Set
 
 You can iterate over the values in a set with a `for`-`in` loop.
 
@@ -424,24 +394,20 @@ for genre in favoriteGenres.sorted() {
 // Jazz
 ```
 
-
-
-## Performing Set Operations 
+### Performing Set Operations
 
 You can efficiently perform fundamental set operations, such as combining two sets together, determining which values two sets have in common, or determining whether two sets contain all, some, or none of the same values.
 
-
-
-### Fundamental Set Operations 
+#### Fundamental Set Operations
 
 The illustration below depicts two sets — `a` and `b` — with the results of various set operations represented by the shaded regions.
 
-<img src="https://docs.swift.org/swift-book/images/setVennDiagram~dark@2x.png" alt="img" style="zoom: 50%;" />
+![img](https://docs.swift.org/swift-book/images/setVennDiagram\~dark@2x.png)
 
-- Use the `intersection(_:)` method to create a new set with only the values common to both sets.
-- Use the `symmetricDifference(_:)` method to create a new set with values in either set, but not both.
-- Use the `union(_:)` method to create a new set with all of the values in both sets.
-- Use the `subtracting(_:)` method to create a new set with values not in the specified set.
+* Use the `intersection(_:)` method to create a new set with only the values common to both sets.
+* Use the `symmetricDifference(_:)` method to create a new set with values in either set, but not both.
+* Use the `union(_:)` method to create a new set with all of the values in both sets.
+* Use the `subtracting(_:)` method to create a new set with values not in the specified set.
 
 ```swift
 let oddDigits: Set = [1, 3, 5, 7, 9]
@@ -458,19 +424,17 @@ oddDigits.symmetricDifference(singleDigitPrimeNumbers).sorted()
 // [1, 2, 9]
 ```
 
+#### Set Membership and Equality
 
+The illustration below depicts three sets — `a`, `b` and `c` — with overlapping regions representing elements shared among sets. Set `a` is a _superset_ of set `b`, because `a` contains all elements in `b`. Conversely, set `b` is a _subset_ of set `a`, because all elements in `b` are also contained by `a`. Set `b` and set `c` are _disjoint_ with one another, because they share no elements in common.
 
-### Set Membership and Equality 
+![img](https://docs.swift.org/swift-book/images/setEulerDiagram\~dark@2x.png)
 
-The illustration below depicts three sets — `a`, `b` and `c` — with overlapping regions representing elements shared among sets. Set `a` is a *superset* of set `b`, because `a` contains all elements in `b`. Conversely, set `b` is a *subset* of set `a`, because all elements in `b` are also contained by `a`. Set `b` and set `c` are *disjoint* with one another, because they share no elements in common.
-
-<img src="https://docs.swift.org/swift-book/images/setEulerDiagram~dark@2x.png" alt="img" style="zoom: 33%;" />
-
-- Use the “is equal” operator (`==`) to determine whether two sets contain all of the same values.
-- Use the `isSubset(of:)` method to determine whether all of the values of a set are contained in the specified set.
-- Use the `isSuperset(of:)` method to determine whether a set contains all of the values in a specified set.
-- Use the `isStrictSubset(of:)` or `isStrictSuperset(of:)` methods to determine whether a set is a subset or superset, but not equal to, a specified set.
-- Use the `isDisjoint(with:)` method to determine whether two sets have no values in common.
+* Use the “is equal” operator (`==`) to determine whether two sets contain all of the same values.
+* Use the `isSubset(of:)` method to determine whether all of the values of a set are contained in the specified set.
+* Use the `isSuperset(of:)` method to determine whether a set contains all of the values in a specified set.
+* Use the `isStrictSubset(of:)` or `isStrictSuperset(of:)` methods to determine whether a set is a subset or superset, but not equal to, a specified set.
+* Use the `isDisjoint(with:)` method to determine whether two sets have no values in common.
 
 ```swift
 let houseAnimals: Set = ["🐶", "🐱"]
@@ -485,11 +449,9 @@ farmAnimals.isDisjoint(with: cityAnimals)
 // true
 ```
 
+### Dictionaries
 
-
-## Dictionaries 
-
-A *dictionary* stores associations between keys of the same type and values of the same type in a collection with no defined ordering. Each value is associated with a unique *key*, which acts as an identifier for that value within the dictionary. Unlike items in an array, items in a dictionary don’t have a specified order. You use a dictionary when you need to look up values based on their identifier, in much the same way that a real-world dictionary is used to look up the definition for a particular word.
+A _dictionary_ stores associations between keys of the same type and values of the same type in a collection with no defined ordering. Each value is associated with a unique _key_, which acts as an identifier for that value within the dictionary. Unlike items in an array, items in a dictionary don’t have a specified order. You use a dictionary when you need to look up values based on their identifier, in much the same way that a real-world dictionary is used to look up the definition for a particular word.
 
 > **Note**
 >
@@ -497,9 +459,7 @@ A *dictionary* stores associations between keys of the same type and values of t
 >
 > For more information about using `Dictionary` with Foundation and Cocoa, see [Bridging Between Dictionary and NSDictionary](https://developer.apple.com/documentation/swift/dictionary#2846239).
 
-
-
-### Dictionary Type Shorthand Syntax 
+#### Dictionary Type Shorthand Syntax
 
 The type of a Swift dictionary is written in full as `Dictionary<Key, Value>`, where `Key` is the type of value that can be used as a dictionary key, and `Value` is the type of value that the dictionary stores for those keys.
 
@@ -509,9 +469,7 @@ The type of a Swift dictionary is written in full as `Dictionary<Key, Value>`, w
 
 You can also write the type of a dictionary in shorthand form as `[Key: Value]`. Although the two forms are functionally identical, the shorthand form is preferred and is used throughout this guide when referring to the type of a dictionary.
 
-
-
-### Creating an Empty Dictionary 
+#### Creating an Empty Dictionary
 
 As with arrays, you can create an empty `Dictionary` of a certain type by using initializer syntax:
 
@@ -531,13 +489,11 @@ namesOfIntegers = [:]
 // namesOfIntegers is once again an empty dictionary of type [Int: String]
 ```
 
+#### Creating a Dictionary with a Dictionary Literal
 
+You can also initialize a dictionary with a _dictionary literal_, which has a similar syntax to the array literal seen earlier. A dictionary literal is a shorthand way to write one or more key-value pairs as a `Dictionary` collection.
 
-### Creating a Dictionary with a Dictionary Literal 
-
-You can also initialize a dictionary with a *dictionary literal*, which has a similar syntax to the array literal seen earlier. A dictionary literal is a shorthand way to write one or more key-value pairs as a `Dictionary` collection.
-
-A *key-value pair* is a combination of a key and a value. In a dictionary literal, the key and value in each key-value pair are separated by a colon. The key-value pairs are written as a list, separated by commas, surrounded by a pair of square brackets:
+A _key-value pair_ is a combination of a key and a value. In a dictionary literal, the key and value in each key-value pair are separated by a colon. The key-value pairs are written as a list, separated by commas, surrounded by a pair of square brackets:
 
 ```swift
 [<#key 1#>: <#value 1#>, <#key 2#>: <#value 2#>, <#key 3#>: <#value 3#>]
@@ -567,9 +523,7 @@ var airports = ["YYZ": "Toronto Pearson", "DUB": "Dublin"]
 
 Because all keys in the literal are of the same type as each other, and likewise all values are of the same type as each other, Swift can infer that `[String: String]` is the correct type to use for the `airports` dictionary.
 
-
-
-### Accessing and Modifying a Dictionary 
+#### Accessing and Modifying a Dictionary
 
 You access and modify a dictionary through its methods and properties, or by using subscript syntax.
 
@@ -605,7 +559,7 @@ airports["LHR"] = "London Heathrow"
 // the value for "LHR" has been changed to "London Heathrow"
 ```
 
-As an alternative to subscripting, use a dictionary’s `updateValue(_:forKey:)` method to set or update the value for a particular key. Like the subscript examples above, the `updateValue(_:forKey:)` method sets a value for a key if none exists, or updates the value if that key already exists. Unlike a subscript, however, the `updateValue(_:forKey:)` method returns the *old* value after performing an update. This enables you to check whether or not an update took place.
+As an alternative to subscripting, use a dictionary’s `updateValue(_:forKey:)` method to set or update the value for a particular key. Like the subscript examples above, the `updateValue(_:forKey:)` method sets a value for a key if none exists, or updates the value if that key already exists. Unlike a subscript, however, the `updateValue(_:forKey:)` method returns the _old_ value after performing an update. This enables you to check whether or not an update took place.
 
 The `updateValue(_:forKey:)` method returns an optional value of the dictionary’s value type. For a dictionary that stores `String` values, for example, the method returns a value of type `String?`, or “optional `String`”. This optional value contains the old value for that key if one existed before the update, or `nil` if no value existed:
 
@@ -648,9 +602,7 @@ if let removedValue = airports.removeValue(forKey: "DUB") {
 
 ```
 
-
-
-### Iterating Over a Dictionary 
+#### Iterating Over a Dictionary
 
 You can iterate over the key-value pairs in a dictionary with a `for`-`in` loop. Each item in the dictionary is returned as a `(key, value)` tuple, and you can decompose the tuple’s members into temporary constants or variables as part of the iteration:
 

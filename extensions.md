@@ -1,33 +1,31 @@
-[Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)
-
-[TOC]
-
 # Extensions
 
-### Add functionality to an existing type.
+[Swift Language Guide - Table of Contents](./)
 
+\[TOC]
 
+## Extensions
 
-*Extensions* add new functionality to an existing class, structure, enumeration, or protocol type. This includes the ability to extend types for which you don’t have access to the original source code (known as *retroactive modeling*). Extensions are similar to categories in Objective-C. (Unlike Objective-C categories, Swift extensions don’t have names.)
+#### Add functionality to an existing type.
+
+_Extensions_ add new functionality to an existing class, structure, enumeration, or protocol type. This includes the ability to extend types for which you don’t have access to the original source code (known as _retroactive modeling_). Extensions are similar to categories in Objective-C. (Unlike Objective-C categories, Swift extensions don’t have names.)
 
 Extensions in Swift can:
 
-- Add computed instance properties and computed type properties
-- Define instance methods and type methods
-- Provide new initializers
-- Define subscripts
-- Define and use new nested types
-- Make an existing type conform to a protocol
+* Add computed instance properties and computed type properties
+* Define instance methods and type methods
+* Provide new initializers
+* Define subscripts
+* Define and use new nested types
+* Make an existing type conform to a protocol
 
 In Swift, you can even extend a protocol to provide implementations of its requirements or add additional functionality that conforming types can take advantage of. For more details, see [Protocol Extensions](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/protocols#Protocol-Extensions).
 
->**Note**
+> **Note**
 >
->Extensions can add new functionality to a type, but they can’t override existing functionality.
+> Extensions can add new functionality to a type, but they can’t override existing functionality.
 
-
-
-## Extension Syntax
+### Extension Syntax
 
 Declare extensions with the `extension` keyword:
 
@@ -49,13 +47,11 @@ Adding protocol conformance in this way is described in [Adding Protocol Conform
 
 An extension can be used to extend an existing generic type, as described in [Extending a Generic Type](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/generics#Extending-a-Generic-Type). You can also extend a generic type to conditionally add functionality, as described in [Extensions with a Generic Where Clause](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/generics#Extensions-with-a-Generic-Where-Clause).
 
->**Note**
+> **Note**
 >
->If you define an extension to add new functionality to an existing type, the new functionality will be available on all existing instances of that type, even if they were created before the extension was defined.
+> If you define an extension to add new functionality to an existing type, the new functionality will be available on all existing instances of that type, even if they were created before the extension was defined.
 
-
-
-## Computed Properties
+### Computed Properties
 
 Extensions can add computed instance properties and computed type properties to existing types. This example adds five computed instance properties to Swift’s built-in `Double` type, to provide basic support for working with distance units:
 
@@ -89,13 +85,11 @@ print("A marathon is \(aMarathon) meters long")
 // Prints "A marathon is 42195.0 meters long"
 ```
 
->**Note**
+> **Note**
 >
->Extensions can add new computed properties, but they can’t add stored properties, or add property observers to existing properties.
+> Extensions can add new computed properties, but they can’t add stored properties, or add property observers to existing properties.
 
-
-
-## Initializers
+### Initializers
 
 Extensions can add new initializers to existing types. This enables you to extend other types to accept your own custom types as initializer parameters, or to provide additional initialization options that were not included as part of the type’s original implementation.
 
@@ -148,13 +142,11 @@ let centerRect = Rect(center: Point(x: 4.0, y: 4.0),
 // centerRect's origin is (2.5, 2.5) and its size is (3.0, 3.0)
 ```
 
->**Note**
+> **Note**
 >
->If you provide a new initializer with an extension, you are still responsible for making sure that each instance is fully initialized once the initializer completes.
+> If you provide a new initializer with an extension, you are still responsible for making sure that each instance is fully initialized once the initializer completes.
 
-
-
-## Methods
+### Methods
 
 Extensions can add new instance methods and type methods to existing types. The following example adds a new instance method called `repetitions` to the `Int` type:
 
@@ -181,11 +173,9 @@ After defining this extension, you can call the `repetitions(task:)` method on a
 // Hello!
 ```
 
+#### Mutating Instance Methods
 
-
-### Mutating Instance Methods
-
-Instance methods added with an extension can also modify (or *mutate*) the instance itself. Structure and enumeration methods that modify `self` or its properties must mark the instance method as `mutating`, just like mutating methods from an original implementation.
+Instance methods added with an extension can also modify (or _mutate_) the instance itself. Structure and enumeration methods that modify `self` or its properties must mark the instance method as `mutating`, just like mutating methods from an original implementation.
 
 The example below adds a new mutating method called `square` to Swift’s `Int` type, which squares the original value:
 
@@ -200,14 +190,12 @@ someInt.square()
 // someInt is now 9
 ```
 
-
-
-## Subscripts
+### Subscripts
 
 Extensions can add new subscripts to an existing type. This example adds an integer subscript to Swift’s built-in `Int` type. This subscript `[n]` returns the decimal digit `n` places in from the right of the number:
 
-- `123456789[0]` returns `9`
-- `123456789[1]` returns `8`
+* `123456789[0]` returns `9`
+* `123456789[1]` returns `8`
 
 …and so on:
 
@@ -239,9 +227,7 @@ If the `Int` value doesn’t have enough digits for the requested index, the sub
 0746381295[9]
 ```
 
-
-
-## Nested Types
+### Nested Types
 
 Extensions can add new nested types to existing classes, structures, and enumerations:
 
@@ -289,10 +275,8 @@ printIntegerKinds([3, 19, -27, 0, -6, 0, 7])
 
 This function, `printIntegerKinds(_:)`, takes an input array of `Int` values and iterates over those values in turn. For each integer in the array, the function considers the `kind` computed property for that integer, and prints an appropriate description.
 
->**Note**
+> **Note**
 >
->`number.kind` is already known to be of type `Int.Kind`. Because of this, all of the `Int.Kind` case values can be written in shorthand form inside the `switch` statement, such as `.negative` rather than `Int.Kind.negative`.
-
-
+> `number.kind` is already known to be of type `Int.Kind`. Because of this, all of the `Int.Kind` case values can be written in shorthand form inside the `switch` statement, such as `.negative` rather than `Int.Kind.negative`.
 
 [Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)

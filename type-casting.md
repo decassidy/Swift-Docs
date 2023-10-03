@@ -1,22 +1,20 @@
-[Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)
-
-[TOC]
-
 # Type Casting
 
-### Determine a value’s runtime type and give it more specific type information.
+[Swift Language Guide - Table of Contents](./)
 
+\[TOC]
 
+## Type Casting
 
-*Type casting* is a way to check the type of an instance, or to treat that instance as a different superclass or subclass from somewhere else in its own class hierarchy.
+#### Determine a value’s runtime type and give it more specific type information.
+
+_Type casting_ is a way to check the type of an instance, or to treat that instance as a different superclass or subclass from somewhere else in its own class hierarchy.
 
 Type casting in Swift is implemented with the `is` and `as` operators. These two operators provide a simple and expressive way to check the type of a value or cast a value to a different type.
 
 You can also use type casting to check whether a type conforms to a protocol, as described in [Checking for Protocol Conformance](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/protocols#Checking-for-Protocol-Conformance).
 
-
-
-## Defining a Class Hierarchy for Type Casting
+### Defining a Class Hierarchy for Type Casting
 
 You can use type casting with a hierarchy of classes and subclasses to check the type of a particular class instance and to cast that instance to another class within the same hierarchy. The three code snippets below define a hierarchy of classes and an array containing instances of those classes, for use in an example of type casting.
 
@@ -64,13 +62,11 @@ let library = [
 // the type of "library" is inferred to be [MediaItem]
 ```
 
-The items stored in `library` are still `Movie` and `Song` instances behind the scenes. However, if you iterate over the contents of this array, the items you receive back are typed as `MediaItem`, and not as `Movie` or `Song`. In order to work with them as their native type, you need to *check* their type, or *downcast* them to a different type, as described below.
+The items stored in `library` are still `Movie` and `Song` instances behind the scenes. However, if you iterate over the contents of this array, the items you receive back are typed as `MediaItem`, and not as `Movie` or `Song`. In order to work with them as their native type, you need to _check_ their type, or _downcast_ them to a different type, as described below.
 
+### Checking Type
 
-
-## Checking Type
-
-Use the *type check operator* (`is`) to check whether an instance is of a certain subclass type. The type check operator returns `true` if the instance is of that subclass type and `false` if it’s not.
+Use the _type check operator_ (`is`) to check whether an instance is of a certain subclass type. The type check operator returns `true` if the instance is of that subclass type and `false` if it’s not.
 
 The example below defines two variables, `movieCount` and `songCount`, which count the number of `Movie` and `Song` instances in the `library` array:
 
@@ -94,11 +90,9 @@ This example iterates through all items in the `library` array. On each pass, th
 
 `item is Movie` returns `true` if the current `MediaItem` is a `Movie` instance and `false` if it’s not. Similarly, `item is Song` checks whether the item is a `Song` instance. At the end of the `for`-`in` loop, the values of `movieCount` and `songCount` contain a count of how many `MediaItem` instances were found of each type.
 
+### Downcasting
 
-
-## Downcasting
-
-A constant or variable of a certain class type may actually refer to an instance of a subclass behind the scenes. Where you believe this is the case, you can try to *downcast* to the subclass type with a *type cast operator* (`as?` or `as!`).
+A constant or variable of a certain class type may actually refer to an instance of a subclass behind the scenes. Where you believe this is the case, you can try to _downcast_ to the subclass type with a _type cast operator_ (`as?` or `as!`).
 
 Because downcasting can fail, the type cast operator comes in two different forms. The conditional form, `as?`, returns an optional value of the type you are trying to downcast to. The forced form, `as!`, attempts the downcast and force-unwraps the result as a single compound action.
 
@@ -126,7 +120,7 @@ for item in library {
 // Song: Never Gonna Give You Up, by Rick Astley
 ```
 
-The example starts by trying to downcast the current `item` as a `Movie`. Because `item` is a `MediaItem` instance, it’s possible that it *might* be a `Movie`; equally, it’s also possible that it might be a `Song`, or even just a base `MediaItem`. Because of this uncertainty, the `as?` form of the type cast operator returns an *optional* value when attempting to downcast to a subclass type. The result of `item as? Movie` is of type `Movie?`, or “optional `Movie`”.
+The example starts by trying to downcast the current `item` as a `Movie`. Because `item` is a `MediaItem` instance, it’s possible that it _might_ be a `Movie`; equally, it’s also possible that it might be a `Song`, or even just a base `MediaItem`. Because of this uncertainty, the `as?` form of the type cast operator returns an _optional_ value when attempting to downcast to a subclass type. The result of `item as? Movie` is of type `Movie?`, or “optional `Movie`”.
 
 Downcasting to `Movie` fails when applied to the `Song` instances in the library array. To cope with this, the example above uses optional binding to check whether the optional `Movie` actually contains a value (that is, to find out whether the downcast succeeded.) This optional binding is written “`if let movie = item as? Movie`”, which can be read as:
 
@@ -134,18 +128,16 @@ Downcasting to `Movie` fails when applied to the `Song` instances in the library
 
 If the downcasting succeeds, the properties of `movie` are then used to print a description for that `Movie` instance, including the name of its `director`. A similar principle is used to check for `Song` instances, and to print an appropriate description (including `artist` name) whenever a `Song` is found in the library.
 
->**Note**
+> **Note**
 >
->Casting doesn’t actually modify the instance or change its values. The underlying instance remains the same; it’s simply treated and accessed as an instance of the type to which it has been cast.
+> Casting doesn’t actually modify the instance or change its values. The underlying instance remains the same; it’s simply treated and accessed as an instance of the type to which it has been cast.
 
-
-
-## Type Casting for Any and AnyObject
+### Type Casting for Any and AnyObject
 
 Swift provides two special types for working with nonspecific types:
 
-- `Any` can represent an instance of any type at all, including function types.
-- `AnyObject` can represent an instance of any class type.
+* `Any` can represent an instance of any type at all, including function types.
+* `AnyObject` can represent an instance of any class type.
 
 Use `Any` and `AnyObject` only when you explicitly need the behavior and capabilities they provide. It’s always better to be specific about the types you expect to work with in your code.
 
@@ -204,16 +196,14 @@ for thing in things {
 // Hello, Michael
 ```
 
->**Note**
+> **Note**
 >
->The `Any` type represents values of any type, including optional types. Swift gives you a warning if you use an optional value where a value of type `Any` is expected. If you really do need to use an optional value as an `Any` value, you can use the `as` operator to explicitly cast the optional to `Any`, as shown below.
+> The `Any` type represents values of any type, including optional types. Swift gives you a warning if you use an optional value where a value of type `Any` is expected. If you really do need to use an optional value as an `Any` value, you can use the `as` operator to explicitly cast the optional to `Any`, as shown below.
 >
->```Swift
->let optionalNumber: Int? = 3
->things.append(optionalNumber)        // Warning
->things.append(optionalNumber as Any) // No warning
->```
-
-
+> ```Swift
+> let optionalNumber: Int? = 3
+> things.append(optionalNumber)        // Warning
+> things.append(optionalNumber as Any) // No warning
+> ```
 
 [Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)

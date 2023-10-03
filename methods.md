@@ -1,22 +1,20 @@
-[Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)
-
-[TOC]
-
 # Methods
 
-### Define and call functions that are part of an instance or type.
+[Swift Language Guide - Table of Contents](./)
 
+\[TOC]
 
+## Methods
 
-*Methods* are functions that are associated with a particular type. Classes, structures, and enumerations can all define instance methods, which encapsulate specific tasks and functionality for working with an instance of a given type. Classes, structures, and enumerations can also define type methods, which are associated with the type itself. Type methods are similar to class methods in Objective-C.
+#### Define and call functions that are part of an instance or type.
+
+_Methods_ are functions that are associated with a particular type. Classes, structures, and enumerations can all define instance methods, which encapsulate specific tasks and functionality for working with an instance of a given type. Classes, structures, and enumerations can also define type methods, which are associated with the type itself. Type methods are similar to class methods in Objective-C.
 
 The fact that structures and enumerations can define methods in Swift is a major difference from C and Objective-C. In Objective-C, classes are the only types that can define methods. In Swift, you can choose whether to define a class, structure, or enumeration, and still have the flexibility to define methods on the type you create.
 
+### Instance Methods
 
-
-## Instance Methods
-
-*Instance methods* are functions that belong to instances of a particular class, structure, or enumeration. They support the functionality of those instances, either by providing ways to access and modify instance properties, or by providing functionality related to the instance’s purpose. Instance methods have exactly the same syntax as functions, as described in [Functions](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/functions).
+_Instance methods_ are functions that belong to instances of a particular class, structure, or enumeration. They support the functionality of those instances, either by providing ways to access and modify instance properties, or by providing functionality related to the instance’s purpose. Instance methods have exactly the same syntax as functions, as described in [Functions](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/functions).
 
 You write an instance method within the opening and closing braces of the type it belongs to. An instance method has implicit access to all other instance methods and properties of that type. An instance method can be called only on a specific instance of the type it belongs to. It can’t be called in isolation without an existing instance.
 
@@ -39,9 +37,9 @@ class Counter {
 
 The `Counter` class defines three instance methods:
 
-- `increment()` increments the counter by `1`.
-- `increment(by: Int)` increments the counter by a specified integer amount.
-- `reset()` resets the counter to zero.
+* `increment()` increments the counter by `1`.
+* `increment(by: Int)` increments the counter by a specified integer amount.
+* `reset()` resets the counter to zero.
 
 The `Counter` class also declares a variable property, `count`, to keep track of the current counter value.
 
@@ -60,9 +58,7 @@ counter.reset()
 
 Function parameters can have both a name (for use within the function’s body) and an argument label (for use when calling the function), as described in [Function Argument Labels and Parameter Names](Functions.html#Function-Argument-Labels-and-Parameter-Names). The same is true for method parameters, because methods are just functions that are associated with a type.
 
-
-
-### The self Property
+#### The self Property
 
 Every instance of a type has an implicit property called `self`, which is exactly equivalent to the instance itself. You use the `self` property to refer to the current instance within its own instance methods.
 
@@ -96,13 +92,11 @@ if somePoint.isToTheRightOf(x: 1.0) {
 
 Without the `self` prefix, Swift would assume that both uses of `x` referred to the method parameter called `x`.
 
+#### Modifying Value Types from Within Instance Methods
 
+Structures and enumerations are _value types_. By default, the properties of a value type can’t be modified from within its instance methods.
 
-### Modifying Value Types from Within Instance Methods
-
-Structures and enumerations are *value types*. By default, the properties of a value type can’t be modified from within its instance methods.
-
-However, if you need to modify the properties of your structure or enumeration within a particular method, you can opt in to *mutating* behavior for that method. The method can then mutate (that is, change) its properties from within the method, and any changes that it makes are written back to the original structure when the method ends. The method can also assign a completely new instance to its implicit `self` property, and this new instance will replace the existing one when the method ends.
+However, if you need to modify the properties of your structure or enumeration within a particular method, you can opt in to _mutating_ behavior for that method. The method can then mutate (that is, change) its properties from within the method, and any changes that it makes are written back to the original structure when the method ends. The method can also assign a completely new instance to its implicit `self` property, and this new instance will replace the existing one when the method ends.
 
 You can opt in to this behavior by placing the `mutating` keyword before the `func` keyword for that method:
 
@@ -130,9 +124,7 @@ fixedPoint.moveBy(x: 2.0, y: 3.0)
 // this will report an error
 ```
 
-
-
-### Assigning to self Within a Mutating Method
+#### Assigning to self Within a Mutating Method
 
 Mutating methods can assign an entirely new instance to the implicit `self` property. The `Point` example shown above could have been written in the following way instead:
 
@@ -172,15 +164,13 @@ ovenLight.next()
 
 This example defines an enumeration for a three-state switch. The switch cycles between three different power states (`off`, `low` and `high`) every time its `next()` method is called.
 
+### Type Methods
 
+Instance methods, as described above, are methods that you call on an instance of a particular type. You can also define methods that are called on the type itself. These kinds of methods are called _type methods_. You indicate type methods by writing the `static` keyword before the method’s `func` keyword. Classes can use the `class` keyword instead, to allow subclasses to override the superclass’s implementation of that method.
 
-## Type Methods
-
-Instance methods, as described above, are methods that you call on an instance of a particular type. You can also define methods that are called on the type itself. These kinds of methods are called *type methods*. You indicate type methods by writing the `static` keyword before the method’s `func` keyword. Classes can use the `class` keyword instead, to allow subclasses to override the superclass’s implementation of that method.
-
->**Note**
+> **Note**
 >
->In Objective-C, you can define type-level methods only for Objective-C classes. In Swift, you can define type-level methods for all classes, structures, and enumerations. Each type method is explicitly scoped to the type it supports.
+> In Objective-C, you can define type-level methods only for Objective-C classes. In Swift, you can define type-level methods for all classes, structures, and enumerations. Each type method is explicitly scoped to the type it supports.
 
 Type methods are called with dot syntax, like instance methods. However, you call type methods on the type, not on an instance of that type. Here’s how you call a type method on a class called `SomeClass`:
 
@@ -272,7 +262,5 @@ if player.tracker.advance(to: 6) {
 }
 // Prints "level 6 hasn't yet been unlocked"
 ```
-
-
 
 [Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)

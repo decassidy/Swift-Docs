@@ -1,20 +1,18 @@
-[Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)
-
-[TOC]
-
 # Protocols
 
-### Define requirements that conforming types must implement.
+[Swift Language Guide - Table of Contents](./)
 
+\[TOC]
 
+## Protocols
 
-A *protocol* defines a blueprint of methods, properties, and other requirements that suit a particular task or piece of functionality. The protocol can then be *adopted* by a class, structure, or enumeration to provide an actual implementation of those requirements. Any type that satisfies the requirements of a protocol is said to *conform* to that protocol.
+#### Define requirements that conforming types must implement.
+
+A _protocol_ defines a blueprint of methods, properties, and other requirements that suit a particular task or piece of functionality. The protocol can then be _adopted_ by a class, structure, or enumeration to provide an actual implementation of those requirements. Any type that satisfies the requirements of a protocol is said to _conform_ to that protocol.
 
 In addition to specifying requirements that conforming types must implement, you can extend a protocol to implement some of these requirements or to implement additional functionality that conforming types can take advantage of.
 
-
-
-## Protocol Syntax
+### Protocol Syntax
 
 You define protocols in a very similar way to classes, structures, and enumerations:
 
@@ -40,11 +38,9 @@ class SomeClass: SomeSuperclass, FirstProtocol, AnotherProtocol {
 }
 ```
 
+### Property Requirements
 
-
-## Property Requirements
-
-A protocol can require any conforming type to provide an instance property or type property with a particular name and type. The protocol doesn’t specify whether the property should be a stored property or a computed property — it only specifies the required property name and type. The protocol also specifies whether each property must be gettable or gettable *and* settable.
+A protocol can require any conforming type to provide an instance property or type property with a particular name and type. The protocol doesn’t specify whether the property should be a stored property or a computed property — it only specifies the required property name and type. The protocol also specifies whether each property must be gettable or gettable _and_ settable.
 
 If a protocol requires a property to be gettable and settable, that property requirement can’t be fulfilled by a constant stored property or a read-only computed property. If the protocol only requires a property to be gettable, the requirement can be satisfied by any kind of property, and it’s valid for the property to be also settable if this is useful for your own code.
 
@@ -109,9 +105,7 @@ var ncc1701 = Starship(name: "Enterprise", prefix: "USS")
 
 This class implements the `fullName` property requirement as a computed read-only property for a starship. Each `Starship` class instance stores a mandatory `name` and an optional `prefix`. The `fullName` property uses the `prefix` value if it exists, and prepends it to the beginning of `name` to create a full name for the starship.
 
-
-
-## Method Requirements
+### Method Requirements
 
 Protocols can require specific instance methods and type methods to be implemented by conforming types. These methods are written as part of the protocol’s definition in exactly the same way as for normal instance and type methods, but without curly braces or a method body. Variadic parameters are allowed, subject to the same rules as for normal methods. Default values, however, can’t be specified for method parameters within a protocol’s definition.
 
@@ -135,7 +129,7 @@ This protocol, `RandomNumberGenerator`, requires any conforming type to have an 
 
 The `RandomNumberGenerator` protocol doesn’t make any assumptions about how each random number will be generated — it simply requires the generator to provide a standard way to generate a new random number.
 
-Here’s an implementation of a class that adopts and conforms to the `RandomNumberGenerator` protocol. This class implements a pseudorandom number generator algorithm known as a *linear congruential generator*:
+Here’s an implementation of a class that adopts and conforms to the `RandomNumberGenerator` protocol. This class implements a pseudorandom number generator algorithm known as a _linear congruential generator_:
 
 ```Swift
 class LinearCongruentialGenerator: RandomNumberGenerator {
@@ -156,17 +150,15 @@ print("And another one: \(generator.random())")
 // Prints "And another one: 0.729023776863283"
 ```
 
+### Mutating Method Requirements
 
-
-## Mutating Method Requirements
-
-It’s sometimes necessary for a method to modify (or *mutate*) the instance it belongs to. For instance methods on value types (that is, structures and enumerations) you place the `mutating` keyword before a method’s `func` keyword to indicate that the method is allowed to modify the instance it belongs to and any properties of that instance. This process is described in [Modifying Value Types from Within Instance Methods](Methods.html#Modifying-Value-Types-from-Within-Instance-Methods).
+It’s sometimes necessary for a method to modify (or _mutate_) the instance it belongs to. For instance methods on value types (that is, structures and enumerations) you place the `mutating` keyword before a method’s `func` keyword to indicate that the method is allowed to modify the instance it belongs to and any properties of that instance. This process is described in [Modifying Value Types from Within Instance Methods](Methods.html#Modifying-Value-Types-from-Within-Instance-Methods).
 
 If you define a protocol instance method requirement that’s intended to mutate instances of any type that adopts the protocol, mark the method with the `mutating` keyword as part of the protocol’s definition. This enables structures and enumerations to adopt the protocol and satisfy that method requirement.
 
->**Note**
+> **Note**
 >
->If you mark a protocol instance method requirement as `mutating`, you don’t need to write the `mutating` keyword when writing an implementation of that method for a class. The `mutating` keyword is only used by structures and enumerations.
+> If you mark a protocol instance method requirement as `mutating`, you don’t need to write the `mutating` keyword when writing an implementation of that method for a class. The `mutating` keyword is only used by structures and enumerations.
 
 The example below defines a protocol called `Togglable`, which defines a single instance method requirement called `toggle`. As its name suggests, the `toggle()` method is intended to toggle or invert the state of any conforming type, typically by modifying a property of that type.
 
@@ -199,9 +191,7 @@ lightSwitch.toggle()
 // lightSwitch is now equal to .on
 ```
 
-
-
-## Initializer Requirements
+### Initializer Requirements
 
 Protocols can require specific initializers to be implemented by conforming types. You write these initializers as part of the protocol’s definition in exactly the same way as for normal initializers, but without curly braces or an initializer body:
 
@@ -211,9 +201,7 @@ protocol SomeProtocol {
 }
 ```
 
-
-
-### Class Implementations of Protocol Initializer Requirements
+#### Class Implementations of Protocol Initializer Requirements
 
 You can implement a protocol initializer requirement on a conforming class as either a designated initializer or a convenience initializer. In both cases, you must mark the initializer implementation with the `required` modifier:
 
@@ -229,9 +217,9 @@ The use of the `required` modifier ensures that you provide an explicit or inher
 
 For more information on required initializers, see [Required Initializers](Initialization.html#Required-Initializers).
 
->**Note**
+> **Note**
 >
->You don’t need to mark protocol initializer implementations with the `required` modifier on classes that are marked with the `final` modifier, because final classes can’t subclassed. For more about the `final` modifier, see [Preventing Overrides](Inheritance.html#Preventing-Overrides).
+> You don’t need to mark protocol initializer implementations with the `required` modifier on classes that are marked with the `final` modifier, because final classes can’t subclassed. For more about the `final` modifier, see [Preventing Overrides](Inheritance.html#Preventing-Overrides).
 
 If a subclass overrides a designated initializer from a superclass, and also implements a matching initializer requirement from a protocol, mark the initializer implementation with both the `required` and `override` modifiers:
 
@@ -254,29 +242,25 @@ class SomeSubClass: SomeSuperClass, SomeProtocol {
 }
 ```
 
-
-
-### Failable Initializer Requirements
+#### Failable Initializer Requirements
 
 Protocols can define failable initializer requirements for conforming types, as defined in [Failable Initializers](Initialization.html#Failable-Initializers).
 
 A failable initializer requirement can be satisfied by a failable or nonfailable initializer on a conforming type. A nonfailable initializer requirement can be satisfied by a nonfailable initializer or an implicitly unwrapped failable initializer.
 
+### Protocols as Types
 
-
-## Protocols as Types
-
-Protocols don’t actually implement any functionality themselves. Nonetheless, you can use protocols as a fully fledged types in your code. Using a protocol as a type is sometimes called an *existential type*, which comes from the phrase “there exists a type *T* such that *T* conforms to the protocol”.
+Protocols don’t actually implement any functionality themselves. Nonetheless, you can use protocols as a fully fledged types in your code. Using a protocol as a type is sometimes called an _existential type_, which comes from the phrase “there exists a type _T_ such that _T_ conforms to the protocol”.
 
 You can use a protocol in many places where other types are allowed, including:
 
-- As a parameter type or return type in a function, method, or initializer
-- As the type of a constant, variable, or property
-- As the type of items in an array, dictionary, or other container
+* As a parameter type or return type in a function, method, or initializer
+* As the type of a constant, variable, or property
+* As the type of items in an array, dictionary, or other container
 
->**Note**
+> **Note**
 >
->Because protocols are types, begin their names with a capital letter (such as `FullyNamed` and `RandomNumberGenerator`) to match the names of other types in Swift (such as `Int`, `String`, and `Double`).
+> Because protocols are types, begin their names with a capital letter (such as `FullyNamed` and `RandomNumberGenerator`) to match the names of other types in Swift (such as `Int`, `String`, and `Double`).
 
 Here’s an example of a protocol used as a type:
 
@@ -294,9 +278,9 @@ class Dice {
 }
 ```
 
-This example defines a new class called `Dice`, which represents an *n*-sided dice for use in a board game. `Dice` instances have an integer property called `sides`, which represents how many sides they have, and a property called `generator`, which provides a random number generator from which to create dice roll values.
+This example defines a new class called `Dice`, which represents an _n_-sided dice for use in a board game. `Dice` instances have an integer property called `sides`, which represents how many sides they have, and a property called `generator`, which provides a random number generator from which to create dice roll values.
 
-The `generator` property is of type `RandomNumberGenerator`. Therefore, you can set it to an instance of *any* type that adopts the `RandomNumberGenerator` protocol. Nothing else is required of the instance you assign to this property, except that the instance must adopt the `RandomNumberGenerator` protocol. Because its type is `RandomNumberGenerator`, code inside the `Dice` class can only interact with `generator` in ways that apply to all generators that conform to this protocol. That means it can’t use any methods or properties that are defined by the underlying type of the generator. However, you can downcast from a protocol type to an underlying type in the same way you can downcast from a superclass to a subclass, as discussed in [Downcasting](Type%20Casting.html#Downcasting).
+The `generator` property is of type `RandomNumberGenerator`. Therefore, you can set it to an instance of _any_ type that adopts the `RandomNumberGenerator` protocol. Nothing else is required of the instance you assign to this property, except that the instance must adopt the `RandomNumberGenerator` protocol. Because its type is `RandomNumberGenerator`, code inside the `Dice` class can only interact with `generator` in ways that apply to all generators that conform to this protocol. That means it can’t use any methods or properties that are defined by the underlying type of the generator. However, you can downcast from a protocol type to an underlying type in the same way you can downcast from a superclass to a subclass, as discussed in [Downcasting](Type%20Casting.html#Downcasting).
 
 `Dice` also has an initializer, to set up its initial state. This initializer has a parameter called `generator`, which is also of type `RandomNumberGenerator`. You can pass a value of any conforming type in to this parameter when initializing a new `Dice` instance.
 
@@ -316,11 +300,9 @@ for _ in 1...5 {
 // Random dice roll is 4
 ```
 
+### Delegation
 
-
-## Delegation
-
-*Delegation* is a design pattern that enables a class or structure to hand off (or *delegate*) some of its responsibilities to an instance of another type. This design pattern is implemented by defining a protocol that encapsulates the delegated responsibilities, such that a conforming type (known as a delegate) is guaranteed to provide the functionality that has been delegated. Delegation can be used to respond to a particular action, or to retrieve data from an external source without needing to know the underlying type of that source.
+_Delegation_ is a design pattern that enables a class or structure to hand off (or _delegate_) some of its responsibilities to an instance of another type. This design pattern is implemented by defining a protocol that encapsulates the delegated responsibilities, such that a conforming type (known as a delegate) is guaranteed to provide the functionality that has been delegated. Delegation can be used to respond to a particular action, or to retrieve data from an external source without needing to know the underlying type of that source.
 
 The example below defines two protocols for use with dice-based board games:
 
@@ -340,7 +322,7 @@ The `DiceGame` protocol is a protocol that can be adopted by any game that invol
 
 The `DiceGameDelegate` protocol can be adopted to track the progress of a `DiceGame`. To prevent strong reference cycles, delegates are declared as weak references. For information about weak references, see [Strong Reference Cycles Between Class Instances](Automatic%20Reference%20Counting.html#Strong-Reference-Cycles-Between-Class-Instances). Marking the protocol as class-only lets the `SnakesAndLadders` class later in this chapter declare that its delegate must use a weak reference. A class-only protocol is marked by its inheritance from `AnyObject`, as discussed in [Class-Only Protocols](Protocols.html#Class-Only-Protocols).
 
-Here’s a version of the *Snakes and Ladders* game originally introduced in [Control Flow](Control%20Flow.html). This version is adapted to use a `Dice` instance for its dice-rolls; to adopt the `DiceGame` protocol; and to notify a `DiceGameDelegate` about its progress:
+Here’s a version of the _Snakes and Ladders_ game originally introduced in [Control Flow](Control%20Flow.html). This version is adapted to use a `Dice` instance for its dice-rolls; to adopt the `DiceGame` protocol; and to notify a `DiceGameDelegate` about its progress:
 
 ```Swift
 class SnakesAndLadders: DiceGame {
@@ -375,17 +357,17 @@ class SnakesAndLadders: DiceGame {
 }
 ```
 
-For a description of the *Snakes and Ladders* gameplay, see [Break](Control%20Flow.html#Break).
+For a description of the _Snakes and Ladders_ gameplay, see [Break](Control%20Flow.html#Break).
 
 This version of the game is wrapped up as a class called `SnakesAndLadders`, which adopts the `DiceGame` protocol. It provides a gettable `dice` property and a `play()` method in order to conform to the protocol. (The `dice` property is declared as a constant property because it doesn’t need to change after initialization, and the protocol only requires that it must be gettable.)
 
-The *Snakes and Ladders* game board setup takes place within the class’s `init()` initializer. All game logic is moved into the protocol’s `play` method, which uses the protocol’s required `dice` property to provide its dice roll values.
+The _Snakes and Ladders_ game board setup takes place within the class’s `init()` initializer. All game logic is moved into the protocol’s `play` method, which uses the protocol’s required `dice` property to provide its dice roll values.
 
-Note that the `delegate` property is defined as an *optional* `DiceGameDelegate`, because a delegate isn’t required in order to play the game. Because it’s of an optional type, the `delegate` property is automatically set to an initial value of `nil`. Thereafter, the game instantiator has the option to set the property to a suitable delegate. Because the `DiceGameDelegate` protocol is class-only, you can declare the delegate to be `weak` to prevent reference cycles.
+Note that the `delegate` property is defined as an _optional_ `DiceGameDelegate`, because a delegate isn’t required in order to play the game. Because it’s of an optional type, the `delegate` property is automatically set to an initial value of `nil`. Thereafter, the game instantiator has the option to set the property to a suitable delegate. Because the `DiceGameDelegate` protocol is class-only, you can declare the delegate to be `weak` to prevent reference cycles.
 
 `DiceGameDelegate` provides three methods for tracking the progress of a game. These three methods have been incorporated into the game logic within the `play()` method above, and are called when a new game starts, a new turn begins, or the game ends.
 
-Because the `delegate` property is an *optional* `DiceGameDelegate`, the `play()` method uses optional chaining each time it calls a method on the delegate. If the `delegate` property is nil, these delegate calls fail gracefully and without error. If the `delegate` property is non-nil, the delegate methods are called, and are passed the `SnakesAndLadders` instance as a parameter.
+Because the `delegate` property is an _optional_ `DiceGameDelegate`, the `play()` method uses optional chaining each time it calls a method on the delegate. If the `delegate` property is nil, these delegate calls fail gracefully and without error. If the `delegate` property is non-nil, the delegate methods are called, and are passed the `SnakesAndLadders` instance as a parameter.
 
 This next example shows a class called `DiceGameTracker`, which adopts the `DiceGameDelegate` protocol:
 
@@ -431,15 +413,13 @@ game.play()
 // The game lasted for 4 turns
 ```
 
-
-
-## Adding Protocol Conformance with an Extension
+### Adding Protocol Conformance with an Extension
 
 You can extend an existing type to adopt and conform to a new protocol, even if you don’t have access to the source code for the existing type. Extensions can add new properties, methods, and subscripts to an existing type, and are therefore able to add any requirements that a protocol may demand. For more about extensions, see [Extensions](Extensions.html).
 
->**Note**
+> **Note**
 >
->Existing instances of a type automatically adopt and conform to a protocol when that conformance is added to the instance’s type in an extension.
+> Existing instances of a type automatically adopt and conform to a protocol when that conformance is added to the instance’s type in an extension.
 
 For example, this protocol, called `TextRepresentable`, can be implemented by any type that has a way to be represented as text. This might be a description of itself, or a text version of its current state:
 
@@ -481,9 +461,7 @@ print(game.textualDescription)
 // Prints "A game of Snakes and Ladders with 25 squares"
 ```
 
-
-
-### Conditionally Conforming to a Protocol
+#### Conditionally Conforming to a Protocol
 
 A generic type may be able to satisfy the requirements of a protocol only under certain conditions, such as when the type’s generic parameter conforms to the protocol. You can make a generic type conditionally conform to a protocol by listing constraints when extending the type. Write these constraints after the name of the protocol you’re adopting by writing a generic `where` clause. For more about generic `where` clauses, see [Generic Where Clauses](Generics.html#Generic-Where-Clauses).
 
@@ -501,9 +479,7 @@ print(myDice.textualDescription)
 // Prints "[A 6-sided dice, A 12-sided dice]"
 ```
 
-
-
-### Declaring Protocol Adoption with an Extension
+#### Declaring Protocol Adoption with an Extension
 
 If a type already conforms to all of the requirements of a protocol, but hasn’t yet stated that it adopts that protocol, you can make it adopt the protocol with an empty extension:
 
@@ -526,21 +502,19 @@ print(somethingTextRepresentable.textualDescription)
 // Prints "A hamster named Simon"
 ```
 
->**Note**
+> **Note**
 >
->Types don’t automatically adopt a protocol just by satisfying its requirements. They must always explicitly declare their adoption of the protocol.
+> Types don’t automatically adopt a protocol just by satisfying its requirements. They must always explicitly declare their adoption of the protocol.
 
-
-
-## Adopting a Protocol Using a Synthesized Implementation
+### Adopting a Protocol Using a Synthesized Implementation
 
 Swift can automatically provide the protocol conformance for `Equatable`, `Hashable`, and `Comparable` in many simple cases. Using this synthesized implementation means you don’t have to write repetitive boilerplate code to implement the protocol requirements yourself.
 
 Swift provides a synthesized implementation of `Equatable` for the following kinds of custom types:
 
-- Structures that have only stored properties that conform to the `Equatable` protocol
-- Enumerations that have only associated types that conform to the `Equatable` protocol
-- Enumerations that have no associated types
+* Structures that have only stored properties that conform to the `Equatable` protocol
+* Enumerations that have only associated types that conform to the `Equatable` protocol
+* Enumerations that have no associated types
 
 To receive a synthesized implementation of `==`, declare conformance to `Equatable` in the file that contains the original declaration, without implementing an `==` operator yourself. The `Equatable` protocol provides a default implementation of `!=`.
 
@@ -561,9 +535,9 @@ if twoThreeFour == anotherTwoThreeFour {
 
 Swift provides a synthesized implementation of `Hashable` for the following kinds of custom types:
 
-- Structures that have only stored properties that conform to the `Hashable` protocol
-- Enumerations that have only associated types that conform to the `Hashable` protocol
-- Enumerations that have no associated types
+* Structures that have only stored properties that conform to the `Hashable` protocol
+* Enumerations that have only associated types that conform to the `Hashable` protocol
+* Enumerations that have no associated types
 
 To receive a synthesized implementation of `hash(into:)`, declare conformance to `Hashable` in the file that contains the original declaration, without implementing a `hash(into:)` method yourself.
 
@@ -588,9 +562,7 @@ for level in levels.sorted() {
 // Prints "expert(stars: 5)"
 ```
 
-
-
-## Collections of Protocol Types
+### Collections of Protocol Types
 
 A protocol can be used as the type to be stored in a collection such as an array or a dictionary, as mentioned in [Protocols as Types](Protocols.html#Protocols-as-Types). This example creates an array of `TextRepresentable` things:
 
@@ -611,11 +583,9 @@ for thing in things {
 
 Note that the `thing` constant is of type `TextRepresentable`. It’s not of type `Dice`, or `DiceGame`, or `Hamster`, even if the actual instance behind the scenes is of one of those types. Nonetheless, because it’s of type `TextRepresentable`, and anything that’s `TextRepresentable` is known to have a `textualDescription` property, it’s safe to access `thing.textualDescription` each time through the loop.
 
+### Protocol Inheritance
 
-
-## Protocol Inheritance
-
-A protocol can *inherit* one or more other protocols and can add further requirements on top of the requirements it inherits. The syntax for protocol inheritance is similar to the syntax for class inheritance, but with the option to list multiple inherited protocols, separated by commas:
+A protocol can _inherit_ one or more other protocols and can add further requirements on top of the requirements it inherits. The syntax for protocol inheritance is similar to the syntax for class inheritance, but with the option to list multiple inherited protocols, separated by commas:
 
 ```Swift
 protocol InheritingProtocol: SomeProtocol, AnotherProtocol {
@@ -631,7 +601,7 @@ protocol PrettyTextRepresentable: TextRepresentable {
 }
 ```
 
-This example defines a new protocol, `PrettyTextRepresentable`, which inherits from `TextRepresentable`. Anything that adopts `PrettyTextRepresentable` must satisfy all of the requirements enforced by `TextRepresentable`, *plus* the additional requirements enforced by `PrettyTextRepresentable`. In this example, `PrettyTextRepresentable` adds a single requirement to provide a gettable property called `prettyTextualDescription` that returns a `String`.
+This example defines a new protocol, `PrettyTextRepresentable`, which inherits from `TextRepresentable`. Anything that adopts `PrettyTextRepresentable` must satisfy all of the requirements enforced by `TextRepresentable`, _plus_ the additional requirements enforced by `PrettyTextRepresentable`. In this example, `PrettyTextRepresentable` adds a single requirement to provide a gettable property called `prettyTextualDescription` that returns a `String`.
 
 The `SnakesAndLadders` class can be extended to adopt and conform to `PrettyTextRepresentable`:
 
@@ -656,9 +626,9 @@ extension SnakesAndLadders: PrettyTextRepresentable {
 
 This extension states that it adopts the `PrettyTextRepresentable` protocol and provides an implementation of the `prettyTextualDescription` property for the `SnakesAndLadders` type. Anything that’s `PrettyTextRepresentable` must also be `TextRepresentable`, and so the implementation of `prettyTextualDescription` starts by accessing the `textualDescription` property from the `TextRepresentable` protocol to begin an output string. It appends a colon and a line break, and uses this as the start of its pretty text representation. It then iterates through the array of board squares, and appends a geometric shape to represent the contents of each square:
 
-- If the square’s value is greater than `0`, it’s the base of a ladder, and is represented by `▲`.
-- If the square’s value is less than `0`, it’s the head of a snake, and is represented by `▼`.
-- Otherwise, the square’s value is `0`, and it’s a “free” square, represented by `○`.
+* If the square’s value is greater than `0`, it’s the base of a ladder, and is represented by `▲`.
+* If the square’s value is less than `0`, it’s the head of a snake, and is represented by `▼`.
+* Otherwise, the square’s value is `0`, and it’s a “free” square, represented by `○`.
 
 The `prettyTextualDescription` property can now be used to print a pretty text description of any `SnakesAndLadders` instance:
 
@@ -668,9 +638,7 @@ print(game.prettyTextualDescription)
 // ○ ○ ▲ ○ ○ ▲ ○ ○ ▲ ▲ ○ ○ ○ ▼ ○ ○ ○ ○ ▼ ○ ○ ▼ ○ ▼ ○
 ```
 
-
-
-## Class-Only Protocols
+### Class-Only Protocols
 
 You can limit protocol adoption to class types (and not structures or enumerations) by adding the `AnyObject` protocol to a protocol’s inheritance list.
 
@@ -682,15 +650,13 @@ protocol SomeClassOnlyProtocol: AnyObject, SomeInheritedProtocol {
 
 In the example above, `SomeClassOnlyProtocol` can only be adopted by class types. It’s a compile-time error to write a structure or enumeration definition that tries to adopt `SomeClassOnlyProtocol`.
 
->**Note**
+> **Note**
 >
->Use a class-only protocol when the behavior defined by that protocol’s requirements assumes or requires that a conforming type has reference semantics rather than value semantics. For more about reference and value semantics, see Structures and Enumerations Are Value Types and [Classes Are Reference Types](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/classesandstructures#Classes-Are-Reference-Types).
+> Use a class-only protocol when the behavior defined by that protocol’s requirements assumes or requires that a conforming type has reference semantics rather than value semantics. For more about reference and value semantics, see Structures and Enumerations Are Value Types and [Classes Are Reference Types](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/classesandstructures#Classes-Are-Reference-Types).
 
+### Protocol Composition
 
-
-## Protocol Composition
-
-It can be useful to require a type to conform to multiple protocols at the same time. You can combine multiple protocols into a single requirement with a *protocol composition*. Protocol compositions behave as if you defined a temporary local protocol that has the combined requirements of all protocols in the composition. Protocol compositions don’t define any new protocol types.
+It can be useful to require a type to conform to multiple protocols at the same time. You can combine multiple protocols into a single requirement with a _protocol composition_. Protocol compositions behave as if you defined a temporary local protocol that has the combined requirements of all protocols in the composition. Protocol compositions don’t define any new protocol types.
 
 Protocol compositions have the form `SomeProtocol & AnotherProtocol`. You can list as many protocols as you need, separating them with ampersands (`&`). In addition to its list of protocols, a protocol composition can also contain one class type, which you can use to specify a required superclass.
 
@@ -752,15 +718,13 @@ The `beginConcert(in:)` function takes a parameter of type `Location & Named`, w
 
 Passing `birthdayPerson` to the `beginConcert(in:)` function is invalid because `Person` isn’t a subclass of `Location`. Likewise, if you made a subclass of `Location` that didn’t conform to the `Named` protocol, calling `beginConcert(in:)` with an instance of that type is also invalid.
 
-
-
-## Checking for Protocol Conformance
+### Checking for Protocol Conformance
 
 You can use the `is` and `as` operators described in [Type Casting](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/typecasting) to check for protocol conformance, and to cast to a specific protocol. Checking for and casting to a protocol follows exactly the same syntax as checking for and casting to a type:
 
-- The `is` operator returns `true` if an instance conforms to a protocol and returns `false` if it doesn’t.
-- The `as?` version of the downcast operator returns an optional value of the protocol’s type, and this value is `nil` if the instance doesn’t conform to that protocol.
-- The `as!` version of the downcast operator forces the downcast to the protocol type and triggers a runtime error if the downcast doesn’t succeed.
+* The `is` operator returns `true` if an instance conforms to a protocol and returns `false` if it doesn’t.
+* The `as?` version of the downcast operator returns an optional value of the protocol’s type, and this value is `nil` if the instance doesn’t conform to that protocol.
+* The `as!` version of the downcast operator forces the downcast to the protocol type and triggers a runtime error if the downcast doesn’t succeed.
 
 This example defines a protocol called `HasArea`, with a single property requirement of a gettable `Double` property called `area`:
 
@@ -827,11 +791,9 @@ Whenever an object in the array conforms to the `HasArea` protocol, the optional
 
 Note that the underlying objects aren’t changed by the casting process. They continue to be a `Circle`, a `Country` and an `Animal`. However, at the point that they’re stored in the `objectWithArea` constant, they’re only known to be of type `HasArea`, and so only their `area` property can be accessed.
 
+### Optional Protocol Requirements
 
-
-## Optional Protocol Requirements
-
-You can define *optional requirements* for protocols. These requirements don’t have to be implemented by types that conform to the protocol. Optional requirements are prefixed by the `optional` modifier as part of the protocol’s definition. Optional requirements are available so that you can write code that interoperates with Objective-C. Both the protocol and the optional requirement must be marked with the `@objc` attribute. Note that `@objc` protocols can be adopted only by classes, not by structures or enumerations.
+You can define _optional requirements_ for protocols. These requirements don’t have to be implemented by types that conform to the protocol. Optional requirements are prefixed by the `optional` modifier as part of the protocol’s definition. Optional requirements are available so that you can write code that interoperates with Objective-C. Both the protocol and the optional requirement must be marked with the `@objc` attribute. Note that `@objc` protocols can be adopted only by classes, not by structures or enumerations.
 
 When you use a method or property in an optional requirement, its type automatically becomes an optional. For example, a method of type `(Int) -> String` becomes `((Int) -> String)?`. Note that the entire function type is wrapped in the optional, not the method’s return value.
 
@@ -848,9 +810,9 @@ The following example defines an integer-counting class called `Counter`, which 
 
 The `CounterDataSource` protocol defines an optional method requirement called `increment(forCount:)` and an optional property requirement called `fixedIncrement`. These requirements define two different ways for data sources to provide an appropriate increment amount for a `Counter` instance.
 
->**Note**
+> **Note**
 >
->Strictly speaking, you can write a custom class that conforms to `CounterDataSource` without implementing *either* protocol requirement. They’re both optional, after all. Although technically allowed, this wouldn’t make for a very good data source.
+> Strictly speaking, you can write a custom class that conforms to `CounterDataSource` without implementing _either_ protocol requirement. They’re both optional, after all. Although technically allowed, this wouldn’t make for a very good data source.
 
 The `Counter` class, defined below, has an optional `dataSource` property of type `CounterDataSource?`:
 
@@ -872,13 +834,13 @@ The `Counter` class stores its current value in a variable property called `coun
 
 The `increment()` method first tries to retrieve an increment amount by looking for an implementation of the `increment(forCount:)` method on its data source. The `increment()` method uses optional chaining to try to call `increment(forCount:)`, and passes the current `count` value as the method’s single argument.
 
-Note that *two* levels of optional chaining are at play here. First, it’s possible that `dataSource` may be `nil`, and so `dataSource` has a question mark after its name to indicate that `increment(forCount:)` should be called only if `dataSource` isn’t `nil`. Second, even if `dataSource` *does* exist, there’s no guarantee that it implements `increment(forCount:)`, because it’s an optional requirement. Here, the possibility that `increment(forCount:)` might not be implemented is also handled by optional chaining. The call to `increment(forCount:)` happens only if `increment(forCount:)` exists — that is, if it isn’t `nil`. This is why `increment(forCount:)` is also written with a question mark after its name.
+Note that _two_ levels of optional chaining are at play here. First, it’s possible that `dataSource` may be `nil`, and so `dataSource` has a question mark after its name to indicate that `increment(forCount:)` should be called only if `dataSource` isn’t `nil`. Second, even if `dataSource` _does_ exist, there’s no guarantee that it implements `increment(forCount:)`, because it’s an optional requirement. Here, the possibility that `increment(forCount:)` might not be implemented is also handled by optional chaining. The call to `increment(forCount:)` happens only if `increment(forCount:)` exists — that is, if it isn’t `nil`. This is why `increment(forCount:)` is also written with a question mark after its name.
 
-Because the call to `increment(forCount:)` can fail for either of these two reasons, the call returns an *optional* `Int` value. This is true even though `increment(forCount:)` is defined as returning a non-optional `Int` value in the definition of `CounterDataSource`. Even though there are two optional chaining operations, one after another, the result is still wrapped in a single optional. For more information about using multiple optional chaining operations, see [Linking Multiple Levels of Chaining](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/optionalchaining#Linking-Multiple-Levels-of-Chaining).
+Because the call to `increment(forCount:)` can fail for either of these two reasons, the call returns an _optional_ `Int` value. This is true even though `increment(forCount:)` is defined as returning a non-optional `Int` value in the definition of `CounterDataSource`. Even though there are two optional chaining operations, one after another, the result is still wrapped in a single optional. For more information about using multiple optional chaining operations, see [Linking Multiple Levels of Chaining](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/optionalchaining#Linking-Multiple-Levels-of-Chaining).
 
 After calling `increment(forCount:)`, the optional `Int` that it returns is unwrapped into a constant called `amount`, using optional binding. If the optional `Int` does contain a value — that is, if the delegate and method both exist, and the method returned a value — the unwrapped `amount` is added onto the stored `count` property, and incrementation is complete.
 
-If it’s *not* possible to retrieve a value from the `increment(forCount:)` method — either because `dataSource` is nil, or because the data source doesn’t implement `increment(forCount:)` — then the `increment()` method tries to retrieve a value from the data source’s `fixedIncrement` property instead. The `fixedIncrement` property is also an optional requirement, so its value is an optional `Int` value, even though `fixedIncrement` is defined as a non-optional `Int` property as part of the `CounterDataSource` protocol definition.
+If it’s _not_ possible to retrieve a value from the `increment(forCount:)` method — either because `dataSource` is nil, or because the data source doesn’t implement `increment(forCount:)` — then the `increment()` method tries to retrieve a value from the data source’s `fixedIncrement` property instead. The `fixedIncrement` property is also an optional requirement, so its value is an optional `Int` value, even though `fixedIncrement` is defined as a non-optional `Int` property as part of the `CounterDataSource` protocol definition.
 
 Here’s a simple `CounterDataSource` implementation where the data source returns a constant value of `3` every time it’s queried. It does this by implementing the optional `fixedIncrement` property requirement:
 
@@ -939,9 +901,7 @@ for _ in 1...5 {
 // 0
 ```
 
-
-
-## Protocol Extensions
+### Protocol Extensions
 
 Protocols can be extended to provide method, initializer, subscript, and computed property implementations to conforming types. This allows you to define behavior on protocols themselves, rather than in each type’s individual conformance or in a global function.
 
@@ -967,15 +927,13 @@ print("And here's a random Boolean: \(generator.randomBool())")
 
 Protocol extensions can add implementations to conforming types but can’t make a protocol extend or inherit from another protocol. Protocol inheritance is always specified in the protocol declaration itself.
 
-
-
-### Providing Default Implementations
+#### Providing Default Implementations
 
 You can use protocol extensions to provide a default implementation to any method or computed property requirement of that protocol. If a conforming type provides its own implementation of a required method or property, that implementation will be used instead of the one provided by the extension.
 
->**Note**
+> **Note**
 >
->Protocol requirements with default implementations provided by extensions are distinct from optional protocol requirements. Although conforming types don’t have to provide their own implementation of either, requirements with default implementations can be called without optional chaining.
+> Protocol requirements with default implementations provided by extensions are distinct from optional protocol requirements. Although conforming types don’t have to provide their own implementation of either, requirements with default implementations can be called without optional chaining.
 
 For example, the `PrettyTextRepresentable` protocol, which inherits the `TextRepresentable` protocol can provide a default implementation of its required `prettyTextualDescription` property to simply return the result of accessing the `textualDescription` property:
 
@@ -987,9 +945,7 @@ extension PrettyTextRepresentable  {
 }
 ```
 
-
-
-### Adding Constraints to Protocol Extensions
+#### Adding Constraints to Protocol Extensions
 
 When you define a protocol extension, you can specify constraints that conforming types must satisfy before the methods and properties of the extension are available. You write these constraints after the name of the protocol you’re extending by writing a generic `where` clause. For more about generic `where` clauses, see [Generic Where Clauses](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/generics#Generic-Where-Clauses).
 
@@ -1026,10 +982,8 @@ print(differentNumbers.allEqual())
 // Prints "false"
 ```
 
->**Note**
+> **Note**
 >
->If a conforming type satisfies the requirements for multiple constrained extensions that provide implementations for the same method or property, Swift uses the implementation corresponding to the most specialized constraints.
-
-
+> If a conforming type satisfies the requirements for multiple constrained extensions that provide implementations for the same method or property, Swift uses the implementation corresponding to the most specialized constraints.
 
 [Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)

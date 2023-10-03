@@ -1,20 +1,20 @@
-[Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)
-
-[TOC]
-
 # Optional Chaining
 
-### Access members of an optional value without unwrapping.
+[Swift Language Guide - Table of Contents](./)
 
-*Optional chaining* is a process for querying and calling properties, methods, and subscripts on an optional that might currently be `nil`. If the optional contains a value, the property, method, or subscript call succeeds; if the optional is `nil`, the property, method, or subscript call returns `nil`. Multiple queries can be chained together, and the entire chain fails gracefully if any link in the chain is `nil`.
+\[TOC]
 
->**Note**
+## Optional Chaining
+
+#### Access members of an optional value without unwrapping.
+
+_Optional chaining_ is a process for querying and calling properties, methods, and subscripts on an optional that might currently be `nil`. If the optional contains a value, the property, method, or subscript call succeeds; if the optional is `nil`, the property, method, or subscript call returns `nil`. Multiple queries can be chained together, and the entire chain fails gracefully if any link in the chain is `nil`.
+
+> **Note**
 >
->Optional chaining in Swift is similar to messaging `nil` in Objective-C, but in a way that works for any type, and that can be checked for success or failure.
+> Optional chaining in Swift is similar to messaging `nil` in Objective-C, but in a way that works for any type, and that can be checked for success or failure.
 
-
-
-## Optional Chaining as an Alternative to Forced Unwrapping
+### Optional Chaining as an Alternative to Forced Unwrapping
 
 You specify optional chaining by placing a question mark (`?`) after the optional value on which you wish to call a property, method or subscript if the optional is non-`nil`. This is very similar to placing an exclamation point (`!`) after an optional value to force the unwrapping of its value. The main difference is that optional chaining fails gracefully when the optional is `nil`, whereas forced unwrapping triggers a runtime error when the optional is `nil`.
 
@@ -87,9 +87,7 @@ if let roomCount = john.residence?.numberOfRooms {
 // Prints "John's residence has 1 room(s)."
 ```
 
-
-
-## Defining Model Classes for Optional Chaining
+### Defining Model Classes for Optional Chaining
 
 You can use optional chaining with calls to properties, methods, and subscripts that are more than one level deep. This enables you to drill down into subproperties within complex models of interrelated types, and to check whether it’s possible to access properties, methods, and subscripts on those subproperties.
 
@@ -164,9 +162,7 @@ class Address {
 
 The `Address` class also provides a method called `buildingIdentifier()`, which has a return type of `String?`. This method checks the properties of the address and returns `buildingName` if it has a value, or `buildingNumber` concatenated with `street` if both have values, or `nil` otherwise.
 
-
-
-## Accessing Properties Through Optional Chaining
+### Accessing Properties Through Optional Chaining
 
 As demonstrated in [Optional Chaining as an Alternative to Forced Unwrapping](Optional%20Chaining.html#Optional-Chaining-as-an-Alternative-to-Forced-Unwrapping), you can use optional chaining to access a property on an optional value, and to check if that property access is successful.
 
@@ -212,9 +208,7 @@ john.residence?.address = createAddress()
 
 You can tell that the `createAddress()` function isn’t called, because nothing is printed.
 
-
-
-## Calling Methods Through Optional Chaining
+### Calling Methods Through Optional Chaining
 
 You can use optional chaining to call a method on an optional value, and to check whether that method call is successful. You can do this even if that method doesn’t define a return value.
 
@@ -250,15 +244,13 @@ if (john.residence?.address = someAddress) != nil {
 // Prints "It was not possible to set the address."
 ```
 
-
-
-## Accessing Subscripts Through Optional Chaining
+### Accessing Subscripts Through Optional Chaining
 
 You can use optional chaining to try to retrieve and set a value from a subscript on an optional value, and to check whether that subscript call is successful.
 
->**Note**
+> **Note**
 >
->When you access a subscript on an optional value through optional chaining, you place the question mark *before* the subscript’s brackets, not after. The optional chaining question mark always follows immediately after the part of the expression that’s optional.
+> When you access a subscript on an optional value through optional chaining, you place the question mark _before_ the subscript’s brackets, not after. The optional chaining question mark always follows immediately after the part of the expression that’s optional.
 
 The example below tries to retrieve the name of the first room in the `rooms` array of the `john.residence` property using the subscript defined on the `Residence` class. Because `john.residence` is currently `nil`, the subscript call fails:
 
@@ -297,11 +289,9 @@ if let firstRoomName = john.residence?[0].name {
 // Prints "The first room name is Living Room."
 ```
 
+#### Accessing Subscripts of Optional Type
 
-
-### Accessing Subscripts of Optional Type
-
-If a subscript returns a value of optional type — such as the key subscript of Swift’s `Dictionary` type — place a question mark *after* the subscript’s closing bracket to chain on its optional return value:
+If a subscript returns a value of optional type — such as the key subscript of Swift’s `Dictionary` type — place a question mark _after_ the subscript’s closing bracket to chain on its optional return value:
 
 ```Swift
 var testScores = ["Dave": [86, 82, 84], "Bev": [79, 94, 81]]
@@ -313,23 +303,21 @@ testScores["Brian"]?[0] = 72
 
 The example above defines a dictionary called `testScores`, which contains two key-value pairs that map a `String` key to an array of `Int` values. The example uses optional chaining to set the first item in the `"Dave"` array to `91`; to increment the first item in the `"Bev"` array by `1`; and to try to set the first item in an array for a key of `"Brian"`. The first two calls succeed, because the `testScores` dictionary contains keys for `"Dave"` and `"Bev"`. The third call fails, because the `testScores` dictionary doesn’t contain a key for `"Brian"`.
 
-
-
-## Linking Multiple Levels of Chaining
+### Linking Multiple Levels of Chaining
 
 You can link together multiple levels of optional chaining to drill down to properties, methods, and subscripts deeper within a model. However, multiple levels of optional chaining don’t add more levels of optionality to the returned value.
 
 To put it another way:
 
-- If the type you are trying to retrieve isn’t optional, it will become optional because of the optional chaining.
-- If the type you are trying to retrieve is *already* optional, it will not become *more* optional because of the chaining.
+* If the type you are trying to retrieve isn’t optional, it will become optional because of the optional chaining.
+* If the type you are trying to retrieve is _already_ optional, it will not become _more_ optional because of the chaining.
 
 Therefore:
 
-- If you try to retrieve an `Int` value through optional chaining, an `Int?` is always returned, no matter how many levels of chaining are used.
-- Similarly, if you try to retrieve an `Int?` value through optional chaining, an `Int?` is always returned, no matter how many levels of chaining are used.
+* If you try to retrieve an `Int` value through optional chaining, an `Int?` is always returned, no matter how many levels of chaining are used.
+* Similarly, if you try to retrieve an `Int?` value through optional chaining, an `Int?` is always returned, no matter how many levels of chaining are used.
 
-The example below tries to access the `street` property of the `address` property of the `residence` property of `john`. There are *two* levels of optional chaining in use here, to chain through the `residence` and `address` properties, both of which are of optional type:
+The example below tries to access the `street` property of the `address` property of the `residence` property of `john`. There are _two_ levels of optional chaining in use here, to chain through the `residence` and `address` properties, both of which are of optional type:
 
 ```Swift
 if let johnsStreet = john.residence?.address?.street {
@@ -362,9 +350,7 @@ if let johnsStreet = john.residence?.address?.street {
 
 In this example, the attempt to set the `address` property of `john.residence` will succeed, because the value of `john.residence` currently contains a valid `Residence` instance.
 
-
-
-## Chaining on Methods with Optional Return Values
+### Chaining on Methods with Optional Return Values
 
 The previous example shows how to retrieve the value of a property of optional type through optional chaining. You can also use optional chaining to call a method that returns a value of optional type, and to chain on that method’s return value if needed.
 
@@ -377,7 +363,7 @@ if let buildingIdentifier = john.residence?.address?.buildingIdentifier() {
 // Prints "John's building identifier is The Larches."
 ```
 
-If you want to perform further optional chaining on this method’s return value, place the optional chaining question mark *after* the method’s parentheses:
+If you want to perform further optional chaining on this method’s return value, place the optional chaining question mark _after_ the method’s parentheses:
 
 ```Swift
 if let beginsWithThe =
@@ -391,10 +377,8 @@ if let beginsWithThe =
 // Prints "John's building identifier begins with "The"."
 ```
 
->**Note**
+> **Note**
 >
->In the example above, you place the optional chaining question mark *after* the parentheses, because the optional value you are chaining on is the `buildingIdentifier()` method’s return value, and not the `buildingIdentifier()` method itself.
-
-
+> In the example above, you place the optional chaining question mark _after_ the parentheses, because the optional value you are chaining on is the `buildingIdentifier()` method’s return value, and not the `buildingIdentifier()` method itself.
 
 [Swift Language Guide - Table of Contents](The%20Swift%20Programming%20Language.html)
