@@ -4,108 +4,58 @@
 
 ### Language Guide
 
-[The Basics](The%20Basics.html) - Work with common kinds of data and write basic syntax.
+[The Basics](<The Basics.md>) - Work with common kinds of data and write basic syntax.
 
-[Basic Operators](Basic%20Operators.html) = Perform operations like assignment, arithmetic, and comparison.
+[Basic Operators](<Basic Operators.md>) = Perform operations like assignment, arithmetic, and comparison.
 
-[Strings and Characters](Strings%20and%20Characters.html) - Store and manipulate text.
+[Strings and Characters](<Strings and Characters.md>) - Store and manipulate text.
 
-!\[swift-logo]\(/Volumes/laravel/Swift Language Guide/swift-logo.svg) [Collection Types](Collection%20Types.html)
+[Collection Types](<Collection Types.md>) - Organize data using arrays, sets, and dictionaries.
 
-Organize data using arrays, sets, and dictionaries.
+[Control Flow](<Control Flow.md>) - Structure code with branches, loops, and early exits.
 
-!\[swift-logo]\(/Volumes/laravel/Swift Language Guide/swift-logo.svg) [Control Flow](Control%20Flow.html)
+[Functions](Functions.md) - Define and call functions, label their arguments, and use their return values.
 
-Structure code with branches, loops, and early exits.
+[Closures](Closures.md) - Group code that executes together, without creating a named function.
 
-!\[swift-logo]\(/Volumes/laravel/Swift Language Guide/swift-logo.svg) [Functions](Functions.html)
+[Enumerations](Enumerations.md) - Model custom types that define a list of possible values.
 
-Define and call functions, label their arguments, and use their return values.
+[Structures and Classes](<Structures and Classes.md>) - Model custom types that encapsulate data.
 
-!\[swift-logo]\(/Volumes/laravel/Swift Language Guide/swift-logo.svg) [Closures](Closures.html)
+[Properties](Properties.md) - Access stored and computed values that are part of an instance or type.
 
-Group code that executes together, without creating a named function.
+[Methods](Methods.md) - Define and call functions that are part of an instance or type.
 
-!\[swift-logo]\(/Volumes/laravel/Swift Language Guide/swift-logo.svg) [Enumerations](Enumerations.html)
+[Subscripts](Subscripts.md) - Access the elements of a collection.
 
-Model custom types that define a list of possible values.
+[Inheritance](Inheritance.md) - Subclass to add or override functionality.
 
-!\[swift-logo]\(/Volumes/laravel/Swift Language Guide/swift-logo.svg) [Structures and Classes](Structures%20and%20Classes.html)
+[Initialization](Initialization.md) - Set the initial values for a type’s stored properties and perform one-time setup.
 
-Model custom types that encapsulate data.
+[Deinitialization](Deinitialization.md) - Release resources that require custom cleanup.
 
-!\[swift-logo]\(/Volumes/laravel/Swift Language Guide/swift-logo.svg) [Properties](Properties.html)
+[Optional Chaining](<Optional Chaining.md>) - Access members of an optional value without unwrapping.
 
-Access stored and computed values that are part of an instance or type.
+[Error Handling](<Error Handling.md>) - Respond to and recover from errors.
 
-!\[swift-logo]\(/Volumes/laravel/Swift Language Guide/swift-logo.svg) [Methods](Methods.html)
+[Concurrency](Concurrency.md) - Perform asynchronous operations.
 
-Define and call functions that are part of an instance or type.
+[Type Casting](<Type Casting.md>) - Determine a value’s runtime type and give it more specific type information.
 
-!\[swift-logo]\(/Volumes/laravel/Swift Language Guide/swift-logo.svg) [Subscripts](Subscripts.html)
+[Nested Types](<Nested Types.md>) - Define types inside the scope of another type.
 
-Access the elements of a collection.
+[Extensions](Extensions.html) - Add functionality to an existing type.
 
-!\[swift-logo]\(/Volumes/laravel/Swift Language Guide/swift-logo.svg) [Inheritance](Inheritance.html)
+[Protocols](Protocols.html) - Define requirements that conforming types must implement.
 
-Subclass to add or override functionality.
+[Generics](Generics.html) - Write code that works for multiple types and specify requirements for those types.
 
-!\[swift-logo]\(/Volumes/laravel/Swift Language Guide/swift-logo.svg) [Initialization](Initialization.html)
+[Opaque Types](Opaque%20Types.html) - Hide implementation details about a value’s type.
 
-Set the initial values for a type’s stored properties and perform one-time setup.
+[Automatic Reference Counting](Automatic%20Reference%20Counting.html) - Model the lifetime of objects and their relationships.
 
-!\[swift-logo]\(/Volumes/laravel/Swift Language Guide/swift-logo.svg) [Deinitialization](Deinitialization.html)
+[Memory Safety](Memory%20Safety.html) - Structure your code to avoid conflicts when accessing memory.
 
-Release resources that require custom cleanup.
+[Access Control](Access%20Control.html) - Manage the visibility of code by declaration, file, and module.
 
-!\[swift-logo]\(/Volumes/laravel/Swift Language Guide/swift-logo.svg) [Optional Chaining](Optional%20Chaining.html)
-
-Access members of an optional value without unwrapping.
-
-!\[swift-logo]\(/Volumes/laravel/Swift Language Guide/swift-logo.svg) [Error Handling](Error%20Handling.html)
-
-Respond to and recover from errors.
-
-!\[swift-logo]\(/Volumes/laravel/Swift Language Guide/swift-logo.svg) [Concurrency](Concurrency.html)
-
-Perform asynchronous operations.
-
-!\[swift-logo]\(/Volumes/laravel/Swift Language Guide/swift-logo.svg) [Type Casting](Type%20Casting.html)
-
-Determine a value’s runtime type and give it more specific type information.
-
-!\[swift-logo]\(/Volumes/laravel/Swift Language Guide/swift-logo.svg) [Nested Types](Nested%20Types.html)
-
-Define types inside the scope of another type.
-
-!\[swift-logo]\(/Volumes/laravel/Swift Language Guide/swift-logo.svg) [Extensions](Extensions.html)
-
-Add functionality to an existing type.
-
-!\[swift-logo]\(/Volumes/laravel/Swift Language Guide/swift-logo.svg) [Protocols](Protocols.html)
-
-Define requirements that conforming types must implement.
-
-!\[swift-logo]\(/Volumes/laravel/Swift Language Guide/swift-logo.svg) [Generics](Generics.html)
-
-Write code that works for multiple types and specify requirements for those types.
-
-!\[swift-logo]\(/Volumes/laravel/Swift Language Guide/swift-logo.svg) [Opaque Types](Opaque%20Types.html)
-
-Hide implementation details about a value’s type.
-
-!\[swift-logo]\(/Volumes/laravel/Swift Language Guide/swift-logo.svg) [Automatic Reference Counting](Automatic%20Reference%20Counting.html)
-
-Model the lifetime of objects and their relationships.
-
-!\[swift-logo]\(/Volumes/laravel/Swift Language Guide/swift-logo.svg) [Memory Safety](Memory%20Safety.html)
-
-Structure your code to avoid conflicts when accessing memory.
-
-!\[swift-logo]\(/Volumes/laravel/Swift Language Guide/swift-logo.svg) [Access Control](Access%20Control.html)
-
-Manage the visibility of code by declaration, file, and module.
-
-!\[swift-logo]\(/Volumes/laravel/Swift Language Guide/swift-logo.svg) [Advanced Operators](Advanced%20Operators.html)
-
-Define custom operators, perform bitwise operations, and use builder syntax.
+[Advanced Operators](Advanced%20Operators.html) - Define custom operators, perform bitwise operations, and use builder syntax.
